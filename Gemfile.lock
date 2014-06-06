@@ -55,6 +55,8 @@ GEM
     minitest (5.3.4)
     multi_json (1.10.1)
     polyglot (0.3.4)
+    punkt-segmenter (0.9.1)
+      unicode_utils (>= 1.0.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -109,6 +111,7 @@ GEM
     uglifier (2.5.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unicode_utils (1.4.0)
 
 PLATFORMS
   ruby
@@ -118,6 +121,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
   jquery-rails
+  punkt-segmenter
   rails (= 4.1.1)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
