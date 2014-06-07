@@ -1,6 +1,6 @@
 class EntriesController < ApplicationController
 
-  def create
+  def new
     @parent = Entry.find(params[:parent])
     @entry = @parent.children.new entry_params
 

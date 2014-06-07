@@ -1,0 +1,14 @@
+<p>
+  <%= @parent.text %>
+</p>
+
+<%= form_for :entry do |f| %>
+  <p>
+    <%= f.label :text %>
+    <%= f.text_field :text %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
