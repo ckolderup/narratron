@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: stories
+#
+#  id         :integer          not null, primary key
+#  thanks     :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:

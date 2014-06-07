@@ -31,6 +31,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'punkt-segmenter'
 
+gem 'annotate', ">=2.6.0", group: :development
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
