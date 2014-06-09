@@ -1,0 +1,7 @@
+<% @entry = @story.entry %>
+<% until @entry.nil? do %>
+  <p>
+    <%= @entry.text %> <%= link_to '==>', entry_path(@entry) %>
+  </p>
+  <% @entry = @entry.entries.sample %>
+<% end %>

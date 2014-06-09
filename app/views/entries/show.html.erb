@@ -1,12 +1,3 @@
 <%= @entry.text %>
 
-<%= form_for([@entry, @entry.children.build]) do |f| %>
-  <p>
-    <%= f.label :text %>
-    <%= f.text_field :text %>
-  </p>
-
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+<%= render 'form' %>

@@ -1,0 +1,5 @@
+<ul>
+  <% @stories.each do |s| %>
+    <li> <%= link_to s.entry.text, story_path(s) %>
+  <% end %>
+</ul>

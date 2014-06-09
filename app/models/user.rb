@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
 
-  has_many :entries
+  has_many :entries, dependent: :destroy
   has_many :favorites
   has_many :stories, through: :entry
 

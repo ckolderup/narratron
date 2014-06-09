@@ -10,5 +10,5 @@
 
 class Story < ActiveRecord::Base
   has_one :day
-  has_many :entries
+  has_one :entry, as: :spawnable, dependent: :destroy
 end
