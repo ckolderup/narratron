@@ -1,14 +1,9 @@
 class EntriesController < ApplicationController
 
-  def new
-    @parent = Entry.find(params[:parent])
-    @entry = @parent.children.new entry_params
-
-    if @entry.save then
-      redirect_to @entry
-    else
-      render :new
-    end
+  def create
+    @parent = Entry.find(params[:entry_id])
+    @entry = @parent.children.create entry_params
+    redirect_to entry_path(@entry)
   end
 
   def show

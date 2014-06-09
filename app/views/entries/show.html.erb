@@ -1,8 +1,6 @@
-<p>
-  <%= @parent.text %>
-</p>
+<%= @entry.text %>
 
-<%= form_for :entry do |f| %>
+<%= form_for([@entry, @entry.children.build]) do |f| %>
   <p>
     <%= f.label :text %>
     <%= f.text_field :text %>
