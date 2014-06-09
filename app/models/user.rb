@@ -8,9 +8,12 @@
 #  password_salt :string(255)
 #  created_at    :datetime
 #  updated_at    :datetime
+#  admin         :boolean
 #
 
 class User < ActiveRecord::Base
+  obfuscate_id
+
   attr_accessor :password
   before_save :encrypt_password
 
@@ -37,5 +40,9 @@ class User < ActiveRecord::Base
       self.password_salt = BCrypt::Engine.generate_salt
       self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
     end
+  end
+
+  def is_admin?
+    admin
   end
 end

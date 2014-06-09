@@ -9,6 +9,8 @@
 #
 
 class Story < ActiveRecord::Base
+  obfuscate_id
+
   has_one :day
   has_one :entry, as: :spawnable, dependent: :destroy
 end

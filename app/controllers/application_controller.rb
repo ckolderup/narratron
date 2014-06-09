@@ -5,9 +5,19 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
+  protected
+
+  def authorize
+    unless current_user && current_user.is_admin?
+      flash[:error] = "Unauthorized access"
+      redirect_to root_path
+      false
+    end
+  end
+
   private
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
   end
 end

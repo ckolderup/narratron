@@ -30,6 +30,7 @@ gem 'spring',        group: :development
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'punkt-segmenter'
+gem 'obfuscate_id', git: 'https://github.com/namick/obfuscate_id.git'
 
 gem 'annotate', ">=2.6.0", group: :development
 
