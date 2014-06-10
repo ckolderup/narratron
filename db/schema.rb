@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140609054522) do
+ActiveRecord::Schema.define(version: 20140610233103) do
 
   create_table "days", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "story_id"
+    t.datetime "date"
   end
 
   add_index "days", ["story_id"], name: "index_days_on_story_id"
