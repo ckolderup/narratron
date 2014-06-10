@@ -13,4 +13,12 @@ class Story < ActiveRecord::Base
 
   has_one :day
   has_one :entry, as: :spawnable, dependent: :destroy
+
+  def leaves
+    if entry.nil?
+      nil
+    else
+      entry.leaves
+    end
+  end
 end

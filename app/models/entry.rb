@@ -22,4 +22,19 @@ class Entry < ActiveRecord::Base
 
   validates :spawnable, presence: true
   validates :text, presence: true
+
+  def story
+    if self.spawnable_type == 'Story' then
+      spawnable
+    else
+      spawnable.story
+    end
+  end
+
+  def leaves
+    return self if entries.empty?
+
+    leaves, rest = entries.partition { |e| e.entries.nil? }
+    return leaves + rest.map { |e| e.leaves }
+  end
 end
