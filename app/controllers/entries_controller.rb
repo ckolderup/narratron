@@ -7,12 +7,12 @@ class EntriesController < ApplicationController
 
   def create
     @entry = Entry.new(entry_params)
-    @entry.spawnable = Story.create if @entry.spawnable.nil?
+    @entry.parent = Story.create if @entry.parent.nil?
 
     if @entry.save then
       redirect_to entry_path(@entry)
     else
-      redirect_to @entry.spawnable
+      redirect_to @entry.parent
     end
   end
 
@@ -33,6 +33,6 @@ class EntriesController < ApplicationController
   private
 
   def entry_params
-    params.require(:entry).permit(:text, :spawnable_type, :spawnable_id)
+    params.require(:entry).permit(:text, :parent_type, :parent_id)
   end
 end

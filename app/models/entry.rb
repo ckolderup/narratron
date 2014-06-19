@@ -3,8 +3,8 @@
 # Table name: entries
 #
 #  id             :integer          not null, primary key
-#  spawnable_id   :integer
-#  spawnable_type :string(255)
+#  parent_id      :integer
+#  parent_type    :string(255)
 #  created_at     :datetime
 #  updated_at     :datetime
 #  user_id        :integer
@@ -17,18 +17,14 @@ class Entry < ActiveRecord::Base
   belongs_to :story
   belongs_to :user
 
-  belongs_to :spawnable, polymorphic: true
-  has_many :entries, as: :spawnable, dependent: :destroy
+  belongs_to :parent, polymorphic: true
+  has_many :entries, as: :parent, dependent: :destroy
 
-  validates :spawnable, presence: true
+  validates :parent, presence: true
   validates :text, presence: true
 
   def story
-    if self.spawnable_type == 'Story' then
-      spawnable
-    else
-      spawnable.story
-    end
+    parent.story
   end
 
   def leaves
@@ -36,5 +32,9 @@ class Entry < ActiveRecord::Base
 
     leaves, rest = entries.partition { |e| e.entries.nil? }
     return leaves + rest.map { |e| e.leaves }
+  end
+
+  def all_players
+    parent.all_players + user
   end
 end

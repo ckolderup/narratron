@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20140610233103) do
   add_index "days", ["story_id"], name: "index_days_on_story_id"
 
   create_table "entries", force: true do |t|
-    t.integer  "spawnable_id"
-    t.string   "spawnable_type"
+    t.integer  "parent_id"
+    t.string   "parent_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
