@@ -1,6 +1,13 @@
 <div class="entry-text">
   <%= @entry.text %>
 </div>
-<div class="entry-submission">
-  <%= render 'form' %>
-</div>
+
+<% if current_user then %>
+  <div class="entry-submission">
+    <%= render 'form' %>
+  </div>
+<% else %>
+  <div class="call-to-login">
+    <%= link_to "Sign up", sign_up_path %> or
+    <%= link_to "log in now", log_in_path %> to write the next sentence!
+<% end %>

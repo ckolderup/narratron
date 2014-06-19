@@ -28,13 +28,13 @@ class Entry < ActiveRecord::Base
   end
 
   def leaves
-    return self if entries.empty?
+    return [self] if entries.empty?
 
     leaves, rest = entries.partition { |e| e.entries.nil? }
-    return leaves + rest.map { |e| e.leaves }
+    return [leaves] + rest.map { |e| e.leaves }
   end
 
   def all_players
-    parent.all_players + user
+    parent.all_players + [user]
   end
 end

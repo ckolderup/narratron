@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
+  after_filter :store_return_to
+
   protected
 
   def authorize
@@ -15,9 +17,22 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def redirect_back_or_default(default)
+    redirect_to(session[:return_to] || default)
+    session[:return_to] = nil
+  end
+
   private
 
   def current_user
     @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
+  end
+
+  def admin_access
+    current_user && current_user.is_admin?
+  end
+
+  def store_return_to
+    session[:return_to] = request.url
   end
 end

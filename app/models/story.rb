@@ -16,7 +16,7 @@ class Story < ActiveRecord::Base
 
   def leaves
     if entry.nil?
-      nil
+      []
     else
       entry.leaves
     end

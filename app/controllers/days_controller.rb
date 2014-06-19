@@ -1,16 +1,16 @@
 class DaysController < ApplicationController
   def show
-    if current_user.admin? then
-      render 'days/admin'
-    else
-      @day = Day.find(params[:id])
-      @story = Story.find(days: @day)
-      redirect_to entries_path(@story.leaves.sample)
+    @day ||= Day.find(params[:id])
+    #TODO
+    #if admin_access then
+    #  render 'days/admin'
+    #else
+      redirect_to entry_path(@day.story.leaves.sample)
+    #end
   end
 
   def today
-    @day = Day.find(date: Date.today)
-    params[:day] = @day
+    @day = Day.find_by_date(Date.today.to_datetime)
     show
   end
 end
