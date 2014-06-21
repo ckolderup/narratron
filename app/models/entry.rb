@@ -22,19 +22,29 @@ class Entry < ActiveRecord::Base
 
   validates :parent, presence: true
   validates :text, presence: true
+  validate :user_only_writes_once_per_story
 
   def story
-    parent.story
+    if parent_type == 'Story' then
+      parent
+    else
+      parent.story
+    end
   end
 
-  def leaves
-    return [self] if entries.empty?
-
-    leaves, rest = entries.partition { |e| e.entries.nil? }
-    return [leaves] + rest.map { |e| e.leaves }
+  def descendants
+    entries.flat_map { |e| [e] + e.descendants }
   end
 
-  def all_players
-    parent.all_players + [user]
+  def leaf?
+    entries.empty?
+  end
+
+  private
+
+  def user_only_writes_once_per_story
+    if story.contributors.include?(user) then
+      errors.add(:base, "Can't contribute twice to the same story")
+    end
   end
 end

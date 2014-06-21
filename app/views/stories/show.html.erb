@@ -1,7 +1,7 @@
-<% @entry = @story.entry %>
-<% until @entry.nil? do %>
-  <p>
-    <%= @entry.text %> <%= link_to '==>', entry_path(@entry) %>
-  </p>
-  <% @entry = @entry.entries.sample %>
-<% end %>
+<div class="story-text">
+  <% @story.entries.each do |e| %>
+    <span class="entry <%= 'yours' if e.user == current_user %>">
+      <%= e.text %>
+    </span>
+  <% end %>
+</div>

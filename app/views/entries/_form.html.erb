@@ -10,10 +10,10 @@
 
   <p>
     <%= f.label :text, class: "caption" %>
-    <%= f.text_field :text %>
+    <%= f.text_area :text, autofocus: true %>
   </p>
 
-  <p>
-    <%= f.submit 'Submit', class: "submit-entry" %>
+  <p class="submit-entry">
+    <%= f.submit 'Submit', class: "submit-entry-button" %>
   </p>
 <% end %>

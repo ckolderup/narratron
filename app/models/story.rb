@@ -14,24 +14,19 @@ class Story < ActiveRecord::Base
   has_one :day
   has_one :entry, as: :parent, dependent: :destroy
 
-  def leaves
+  def entries
     if entry.nil?
       []
     else
-      entry.leaves
+      entry.descendants.prepend(entry)
     end
   end
 
-  def already_played
-    leaves.collect { |e| e.all_players }.uniq
+  def leaves
+    entries.select { |e| e.leaf? }
   end
 
-  #to make the polymorphic stuff work
-  def story
-    self
-  end
-
-  def all_players
-    []
+  def contributors
+    entries.collect { |e| e.user }
   end
 end

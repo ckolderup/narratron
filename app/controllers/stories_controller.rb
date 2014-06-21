@@ -7,6 +7,7 @@ class StoriesController < ApplicationController
 
   def show
     @story = Story.find(params[:id])
+    @leaf = @story.leaves.sample
   end
 
   def new

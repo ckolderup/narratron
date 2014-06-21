@@ -13,3 +13,49 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  font: 14px sans-serif;
+}
+
+a {
+  color: #008;
+}
+
+a:visited {
+  color: #333;
+}
+
+#banner {
+  margin: 5px auto 5px 10px;
+  font-family: "Hoefler Text", "Baskerville old face", Garamond, "Times New Roman", serif;
+}
+
+#tag {
+  font-size: 14px;
+  margin-top: 3px;
+}
+
+#title {
+  font-weight: bold;
+  font-size: 30px;
+  margin-bottom: 0px;
+}
+
+#footer {
+  width: 600px;
+  text-align: center;
+  margin: 20px auto 5px auto;
+}
+
+
+#notifications {
+  margin: 20px auto;
+  width: 200px;
+  text-align: center;
+}
+
+#content {
+  margin: 80px auto;
+}
+

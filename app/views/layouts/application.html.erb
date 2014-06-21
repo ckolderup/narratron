@@ -1,31 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CorpseBiz</title>
+  <title>Narratron</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<div id="user_nav">
-  <% if current_user %>
-    Logged in as <%= current_user.email %>.
-    <%= link_to "Log out", log_out_path %>
-  <% else %>
-    <%= link_to "Sign up", sign_up_path %> or
-    <%= link_to "log in", log_in_path %>
-  <% end %>
+<div id="banner">
+  <p id="title"><%= link_to "Narratron", root_path %></p>
+  <p id="tag">Spin up a story.</span>
 </div>
 
-<div class="notifications">
+<div id="notifications">
   <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, :id => "flash_#{name}" %>
   <% end %>
 </div>
 
-<div class="content">
+<div id="content">
   <%= yield %>
+</div>
+
+<div id="footer">
+  <span id="credits">
+    A <a href="http://twitter.com/ckolderup">@ckolderup</a> thing.
+  </span>
+  <span id="user-nav">
+    <% if current_user %>
+      Currently logged in.
+      <%= link_to "Log out", log_out_path %>
+    <% else %>
+      <%= link_to "Sign up", sign_up_path %> or
+      <%= link_to "log in", log_in_path %>
+    <% end %>
+  </div>
 </div>
 
 </body>

@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
-  before_filter :authorize, only: :destroy
+  before_filter :authorize, only: [:destroy, :create]
 
   def new
     @new_entry = Entry.new(entry_params)
@@ -7,6 +7,7 @@ class EntriesController < ApplicationController
 
   def create
     @entry = Entry.new(entry_params)
+    @entry.user = current_user
     @entry.parent = Story.create if @entry.parent.nil?
 
     if @entry.save then

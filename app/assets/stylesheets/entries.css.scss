@@ -1,3 +1,59 @@
 // Place all the styles related to the entries controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.guidance {
+  color: #999;
+  font-size: 13px;
+  width: 80%;
+  margin: 5px auto;
+  text-align: center;
+}
+
+.entry-text {
+  font: 20px "Hoefler Text", "Baskerville old face", Garamond, "Times New Roman", serif;
+  margin: 5px auto 20px auto;
+  width: 425px;
+  text-align: justify;
+  line-height: 22px;
+}
+
+.entry-submission {
+  width: 425px;
+  margin: 5px auto 20px auto;
+
+  .caption {
+    display: none;
+  }
+
+  #entry_text {
+    font: 20px "Hoefler Text", "Baskerville old face", Garamond, "Times New Roman", serif;
+    width: 425px;
+    display: block;
+    height: 60px;
+    border: 0px;
+    resize: none;
+  }
+
+  #entry_text:focus {
+    outline: none;
+  }
+}
+
+.call-to-login {
+  width: 350px;
+  margin: 5px auto 20px auto;
+}
+
+.submit-entry {
+  width: 100px;
+  margin: 10px auto;
+}
+
+.submit-entry-button {
+  font-size: 18px;
+}
+
+.yours {
+  font-weight: bold;
+}
