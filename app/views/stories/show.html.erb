@@ -5,3 +5,10 @@
     </span>
   <% end %>
 </div>
+
+<div class="story-credits">
+  <p>Thanks to the following contributors for their work on this story:</p>
+  <p><%= "Story prompt by #{@story.thanks}" unless @story.thanks.empty? %></p>
+  <% entries = @story.entries; entries.shift! unless @story.thanks.empty? %>
+  <p><%= entries.map { |e| e.user.display_name }.join(', ') %></p>
+</div>

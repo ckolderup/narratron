@@ -1,0 +1,18 @@
+<h1>User Profile</h1>
+
+<div class="display-name">
+  <%= @user.display_name %>
+</div>
+
+<h2>Stories Contributed To</h2>
+<div id="contributed-stories">
+  <% @user.entries.each do |e| %>
+    <div class="entry">
+      <p><%= e.text %></p>
+      <span class="story-link">
+        <%= link_to "View Story", story_path(e.story) %>
+      </span>
+    </div>
+  <% end %>
+</div>
+
