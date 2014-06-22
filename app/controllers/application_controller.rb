@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   def authorize
     unless current_user && current_user.is_admin?
       flash[:error] = "Unauthorized access"
-      redirect_to root_path
+      redirect_back_or_default(root_path)
       false
     end
   end
