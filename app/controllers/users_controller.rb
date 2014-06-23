@@ -16,6 +16,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+    @updating = true
+    @user.password = ''
+  end
+
   def show
     @user = User.find(params[:id])
 

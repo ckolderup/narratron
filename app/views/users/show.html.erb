@@ -1,7 +1,10 @@
-<h1>User Profile</h1>
 
-<div class="display-name">
-  <%= @user.display_name %>
+<div class="top-block">
+  <span class="display-name">
+    <%= @user.display_name %>
+  </span>
+  <span class="edit-link">
+    <%= link_to "Edit Info", edit_user_path(@user) %>
 </div>
 
 <h2>Stories Contributed To</h2>
