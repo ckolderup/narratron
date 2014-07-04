@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#content {
+  width: 500px;
+  margin: 5px auto 20px auto;
+}
+
 .guidance {
   color: #999;
   font-size: 13px;
@@ -10,9 +15,24 @@
   text-align: center;
 }
 
+.wat {
+  color: #999;
+  font-size: 13px;
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.story-credits {
+  color: #555;
+  width: 375px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .entry-text {
   font: 20px "Hoefler Text", "Baskerville old face", Garamond, "Times New Roman", serif;
-  margin: 5px auto 20px auto;
   width: 425px;
   text-align: justify;
   line-height: 22px;
@@ -41,8 +61,10 @@
 }
 
 .call-to-login {
+  color: #555;
   width: 350px;
   margin: 5px auto 20px auto;
+  text-align: center;
 }
 
 .submit-entry {
