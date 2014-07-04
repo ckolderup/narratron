@@ -1,0 +1,60 @@
+<div class="story-text">
+  <% @entries.each do |e| %>
+    <span class="entry <%= 'yours' if e.user == current_user %>">
+    <%= e.text %>
+  </span>
+<% end %>
+</div>
+
+<hr class="faded">
+
+<div class="wat">
+  <% if @story.contributed?(current_user) %>
+    <p>
+      The preceding was a story you participated in on
+      <%= entry_date(@story.contribution_from(current_user)) %>.
+      <% if @entries.map(&:user).include?(current_user) %>
+        The sentence in bold is yours.
+      <% else %>
+        This particular path didn't include your sentence;
+        <%= link_to "click here", @story.contribution_from(current_user) %>
+        to see a path that includes yours.
+      <% end %>
+    </p>
+    <% unless @story.closed? %>
+      <p>
+        This story is still open for contributions. Share this page
+        with your friends and they'll have a chance to contribute their
+        own sentence!
+      </p>
+    <% end %>
+  <% else %>
+    The preceding was a story written by Narratron community members
+    <% if @entries.first.created_on == @entries.last.created_on %>
+      on <%= entry_date(@entries.first) %>
+    <% else %>
+      between <%= entry_date(@entries.first) %>
+      and <%= entry_date(@entries.last) %>
+    <% end %>
+    <% unless current_user %>
+      <div class="call-to-login">
+        <%= link_to "Sign up", sign_up_path %> or
+        <%= link_to "log in", log_in_path %> 
+        to contribute to a story today!
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<hr class="faded">
+
+<div class="story-credits">
+  <p>
+  <% if @story.thanks.present? %>
+    <% @entries.shift! %>
+    Story prompt by <%= @story.thanks %>.
+  <% end %>
+  Sentences in this story path were contributed by
+  <%= @entries.map { |e| e.user.display_name }.to_sentence %>.
+  </p>
+</div>

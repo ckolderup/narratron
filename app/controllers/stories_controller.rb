@@ -8,9 +8,10 @@ class StoriesController < ApplicationController
   def show
     @story = Story.find(params[:id])
     @leaf = @story.leaves.sample
+    redirect_to @leaf
   end
 
   def new
-    @new_entry = Entry.new
+    redirect_to new_entry_path
   end
 end

@@ -14,6 +14,8 @@ class Story < ActiveRecord::Base
   has_one :day
   has_one :entry, as: :parent, dependent: :destroy
 
+  enum status: %w(open wrapping closed)
+
   def entries
     if entry.nil?
       []
@@ -28,5 +30,13 @@ class Story < ActiveRecord::Base
 
   def contributors
     entries.collect { |e| e.user }
+  end
+
+  def contributed?(user)
+    contributors.include?(user)
+  end
+
+  def contribution_from(user)
+    entries.select { |e| e.user == user }.first
   end
 end

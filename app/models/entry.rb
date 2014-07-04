@@ -36,9 +36,14 @@ class Entry < ActiveRecord::Base
     entries.flat_map { |e| [e] + e.descendants }
   end
 
+  def leaves
+    descendants.select { |e| e.leaf? }
+  end
+
   def leaf?
     entries.empty?
   end
+
 
   private
 
