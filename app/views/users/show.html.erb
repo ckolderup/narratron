@@ -11,9 +11,9 @@
 <div id="contributed-stories">
   <% @user.entries.each do |e| %>
     <div class="entry">
-      <p><%= e.text %></p>
-      <span class="story-link">
-        <%= link_to "View Story", story_path(e.story) %>
+      <p class="entry-text"><%= e.text %></p>
+      <div class="story-link">
+        <%= link_to "View Story", entry_path(e) %>
       </span>
     </div>
   <% end %>

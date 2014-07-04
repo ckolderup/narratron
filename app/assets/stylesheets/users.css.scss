@@ -5,3 +5,24 @@
 h1 {
   font: 32px bold "Hoefler Text", "Baskerville old face", Garamond, "Times New Roman", serif;
 }
+
+h2 {
+  font: 28px bold "Hoefler Text", "Baskerville old face", Garamond, "Times New Roman", serif;
+}
+
+.entry {
+  margin-left: 15px;
+  border: 1px solid #ccc;
+  padding: 3px;
+  width: 350px;
+
+  .entry-text {
+    width: 325px;
+    font: 18px "Hoefler Text", "Baskerville old face", Garamond, "Times New Roman", serif;
+  }
+
+  .story-link {
+    width: 100%;
+    text-align: right;
+  }
+}
