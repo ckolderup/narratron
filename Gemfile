@@ -35,6 +35,8 @@ gem 'obfuscate_id', git: 'https://github.com/namick/obfuscate_id.git'
 
 gem 'annotate', ">=2.6.0", group: :development
 
+gem 'base58'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

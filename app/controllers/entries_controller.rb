@@ -18,7 +18,13 @@ class EntriesController < ApplicationController
   end
 
   def show
-    @entry = Entry.find(params[:id])
+    encoded = Base58.encode(params[:id].to_i)
+    redirect_to find_entry_path(@entry, {id: encoded})
+  end
+
+  def find
+    decoded = Base58.decode(params[:id])
+    @entry = Entry.find(decoded)
 
     if @entry.nil?
       raise ActiveRecord::RecordNotFound
