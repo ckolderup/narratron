@@ -5,7 +5,11 @@
 <hr class="faded">
 
 <div class="guidance">
-  Continue the story with one new sentence
+  Continue the story with one new sentence.
+  <% if @entry.story.wrapping? %>
+    This is the final sentence in this story path!
+    Try to wrap it up as best you can.
+  <% end %>
 </div>
 
 <% if current_user then %>

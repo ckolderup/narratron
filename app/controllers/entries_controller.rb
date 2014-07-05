@@ -11,6 +11,8 @@ class EntriesController < ApplicationController
     @entry.parent = Story.create if @entry.parent.nil?
 
     if @entry.save then
+      attempt_wrapping_story(@entry.story)
+      attempt_closing_story(@entry.story)
       redirect_to entry_path(@entry)
     else
       redirect_to @entry.parent
@@ -41,7 +43,11 @@ class EntriesController < ApplicationController
       render 'read' and return
     end
 
+    @entry = @entry.story.leaves.sample
+
     @new_entry = @entry.entries.build
+    @new_entry.ending = true if @entry.story.wrapping?
+
     render 'contribute'
   end
 
@@ -66,5 +72,14 @@ class EntriesController < ApplicationController
     else
       chronological_path_from_leaf(e.parent) << e
     end
+  end
+
+  def attempt_closing_story(story)
+    unfinished_leaves = story.leaves.select { |e| e.ending = false }
+    story.update(status: "closed") if story.wrapping? && unfinished_leaves.empty?
+  end
+
+  def attempt_wrapping_story(story)
+    story.update(status: "wrapping") if story.open? && story.created_at < 1.day.ago
   end
 end

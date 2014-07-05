@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140704032133) do
+ActiveRecord::Schema.define(version: 20140704210643) do
 
   create_table "days", force: true do |t|
     t.datetime "created_at"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20140704032133) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "text"
+    t.boolean  "ending"
   end
 
   add_index "entries", ["user_id"], name: "index_entries_on_user_id"
