@@ -10,7 +10,7 @@
 <h2>Stories Contributed To</h2>
 <div id="contributed-stories">
   <% @user.entries.each do |e| %>
-    <div class="entry">
+    <div class="user-profile-entry">
       <p class="entry-text"><%= e.text %></p>
       <div class="story-link">
         <%= link_to "View Story", entry_path(e) %>

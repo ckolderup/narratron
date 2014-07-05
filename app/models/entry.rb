@@ -2,13 +2,14 @@
 #
 # Table name: entries
 #
-#  id             :integer          not null, primary key
-#  parent_id      :integer
-#  parent_type    :string(255)
-#  created_at     :datetime
-#  updated_at     :datetime
-#  user_id        :integer
-#  text           :string(255)
+#  id          :integer          not null, primary key
+#  parent_id   :integer
+#  parent_type :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  user_id     :integer
+#  text        :string(255)
+#  ending      :boolean
 #
 
 class Entry < ActiveRecord::Base

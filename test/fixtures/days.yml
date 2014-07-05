@@ -6,6 +6,7 @@
 #  created_at :datetime
 #  updated_at :datetime
 #  story_id   :integer
+#  date       :datetime
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

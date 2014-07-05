@@ -2,15 +2,14 @@
 #
 # Table name: entries
 #
-#  id             :integer          not null, primary key
+#  id          :integer          not null, primary key
 #  parent_id   :integer
 #  parent_type :string(255)
-#  created_at     :datetime
-#  updated_at     :datetime
-#  story_id       :integer
-#  user_id        :integer
-#  parent_id      :reference
-#  text           :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  user_id     :integer
+#  text        :string(255)
+#  ending      :boolean
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
