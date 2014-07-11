@@ -5,12 +5,13 @@ class DaysController < ApplicationController
     #if admin_access? then
     #  render 'days/admin'
     #else
-      redirect_to entry_path(@day.story.leaves.sample)
     #end
+    redirect_to entry_path(@day.story.leaves.sample)
   end
 
   def today
     @day = Day.find_by_date(Date.today.to_datetime)
-    show
+
+    redirect_to entry_path(@day.story.leaves.sample)
   end
 end
