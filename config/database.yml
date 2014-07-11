@@ -22,4 +22,8 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: narratron_production
+  username: narratron
+  password: <%= Rails.application.secrets.postgres_pass %>

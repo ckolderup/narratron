@@ -37,11 +37,18 @@ gem 'annotate', ">=2.6.0", group: :development
 
 gem 'base58'
 
+gem 'capistrano'
+
+gem 'pg'
+
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'capistrano-rails', group: :development
+
+#so I can stop typing RAILS_ENV all the time
+gem 'foreman'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
