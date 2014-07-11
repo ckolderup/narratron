@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
-  before_filter :authorize, only: [:destroy, :create]
+  before_filter :authorize, only: :destroy
 
   def new
     @new_entry = Entry.new
