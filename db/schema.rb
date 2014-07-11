@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20140711042010) do
     t.string   "thanks"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status"
   end
 
   create_table "users", force: true do |t|
