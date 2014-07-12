@@ -2,7 +2,7 @@ class DaysController < ApplicationController
   def show
     @day ||= Day.find(params[:id])
     #TODO
-    #if admin_access? then
+    #if admin_access?
     #  render 'days/admin'
     #else
     #end

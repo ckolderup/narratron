@@ -10,7 +10,7 @@ class EntriesController < ApplicationController
     @entry.user = current_user
     @entry.parent = Story.create if @entry.parent.nil?
 
-    if @entry.save then
+    if @entry.save
       attempt_wrapping_story(@entry.story)
       attempt_closing_story(@entry.story)
       redirect_to entry_path(@entry)

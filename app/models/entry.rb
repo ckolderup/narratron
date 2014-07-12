@@ -26,7 +26,7 @@ class Entry < ActiveRecord::Base
   validate :user_only_writes_once_per_story
 
   def story
-    if parent_type == 'Story' then
+    if parent_type == 'Story'
       parent
     else
       parent.story
@@ -49,7 +49,7 @@ class Entry < ActiveRecord::Base
   private
 
   def user_only_writes_once_per_story
-    if story.contributors.include?(user) then
+    if story.contributors.include?(user)
       errors.add(:base, "Can't contribute twice to the same story")
     end
   end
