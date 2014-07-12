@@ -51,10 +51,12 @@
 <div class="story-credits">
   <p>
   <% if @story.thanks.present? %>
-    <% @entries.shift! %>
+    <% @entries.shift %>
     Story prompt by <%= @story.thanks %>.
   <% end %>
-  Sentences in this story path were contributed by
-  <%= @entries.map { |e| e.user.display_name }.to_sentence %>.
+  <% unless @entries.empty? %>
+    Sentences in this story path were contributed by
+    <%= @entries.map { |e| e.user.display_name }.to_sentence %>.
+  <% end %>
   </p>
 </div>
