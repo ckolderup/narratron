@@ -8,14 +8,19 @@ class EntriesController < ApplicationController
   def create
     @entry = Entry.new(entry_params)
     @entry.user = current_user
-    @entry.parent = Story.create if @entry.parent.nil?
+    @entry.parent = Story.new if @entry.parent.nil?
 
     if @entry.save
       attempt_wrapping_story(@entry.story)
       attempt_closing_story(@entry.story)
       redirect_to entry_path(@entry)
     else
-      redirect_to @entry.parent
+      if @entry.parent.new_record?
+        flash[:error] = @entry.errors.to_a.join(", ")
+        redirect_to new_entry_path
+      else
+        redirect_to @entry.parent
+      end
     end
   end
 

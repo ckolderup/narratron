@@ -24,12 +24,15 @@ class Entry < ActiveRecord::Base
   validates :parent, presence: true
   validates :text, presence: true
   validate :user_only_writes_once_per_story
+  validate :entry_text_is_only_one_sentence
 
   def story
     if parent_type == 'Story'
       parent
-    else
+    elsif parent.present?
       parent.story
+    else
+      nil
     end
   end
 
@@ -51,6 +54,14 @@ class Entry < ActiveRecord::Base
   def user_only_writes_once_per_story
     if story.contributors.include?(user)
       errors.add(:base, "Can't contribute twice to the same story")
+    end
+  end
+
+  def entry_text_is_only_one_sentence
+    tokenizer = Punkt::SentenceTokenizer.new(text)
+    result    = tokenizer.sentences_from_text(text, :output => :sentences_text)
+    if result.reject { |s| s.length <= 1 }.size > 1
+      errors.add(:base, "Entries must be made up of one sentence only")
     end
   end
 end
