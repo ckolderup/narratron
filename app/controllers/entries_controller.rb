@@ -67,7 +67,9 @@ class EntriesController < ApplicationController
   end
 
   def chronological_path_from_leaf(e)
-    if e.parent_type == 'Story'
+    if e.nil?
+      []
+    elsif e.parent_type == 'Story'
       [e]
     else
       chronological_path_from_leaf(e.parent) << e
