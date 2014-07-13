@@ -1,4 +1,5 @@
 class EntriesController < ApplicationController
+  before_filter :allow_story_creation, only: :new
   before_filter :authorize, only: :destroy
 
   def new

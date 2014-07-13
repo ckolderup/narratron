@@ -22,6 +22,14 @@ class ApplicationController < ActionController::Base
     session[:return_to] = nil
   end
 
+  def allow_story_creation
+    unless story_creator?
+      flash[:error] = "Unauthorized access"
+      redirect_back_or_default(root_path)
+      false
+    end
+  end
+
   private
   def current_user
     @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
@@ -29,6 +37,10 @@ class ApplicationController < ActionController::Base
 
   def admin_access?
     current_user && current_user.is_admin?
+  end
+
+  def story_creator?
+    admin_access? || (current_user && current_user.story_creator)
   end
 
   def store_return_to
