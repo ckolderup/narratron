@@ -15,9 +15,8 @@ This is my first Rails app so I'm still working out all the Rails-y specifics, b
  * Ruby 2.1.2
  * Rails 4.1.1
  * Using rbenv and bundler
- * sqlite3 in development
- * postgresql in production
+ * postgresql in development and production
 
 ## Can I help?
 
-Probably! If you spot anything small that needs fixing, you're welcome to send a pull request. For anything bigger I'd love to talk about it first—feel free to get in touch with me and we can talk about it.
+Probably! If you spot anything small that needs fixing, you're welcome to send a pull request. For anything bigger I'd love to discuss it first—feel free to get in touch with me and we can chat.
