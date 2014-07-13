@@ -31,7 +31,7 @@ class EntriesController < ApplicationController
     if @entry.nil?
       raise ActiveRecord::RecordNotFound
     elsif @entry.story.closed?
-      leaf = @entry.leaves.sample unless @entry.leaf?
+      leaf = @entry.leaf? ? @entry : @entry.leaves.sample
       @entries = chronological_path_from_leaf(leaf)
       @story = leaf.story
       render 'read' and return
