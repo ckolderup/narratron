@@ -30,7 +30,7 @@
     <% end %>
   <% else %>
     The preceding was a story written by Narratron community members
-    <% if @entries.first.created_at == @entries.last.created_at %>
+    <% if @entries.first.created_at.to_date == @entries.last.created_at.to_date %>
       on <%= entry_date(@entries.first) %>
     <% else %>
       between <%= entry_date(@entries.first) %>
