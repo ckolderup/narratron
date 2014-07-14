@@ -36,6 +36,10 @@ class Entry < ActiveRecord::Base
     end
   end
 
+  def first_sentence?
+    parent_type == 'Story'
+  end
+
   def descendants
     entries.flat_map { |e| [e] + e.descendants }
   end
