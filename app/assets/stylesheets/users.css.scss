@@ -1,28 +1,26 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "_mixins";
 
 h1 {
-  font: 32px bold "Hoefler Text", "Baskerville old face", Garamond, "Times New Roman", serif;
+  @include literary(32px);
+  font-weight: bold;
 }
 
 h2 {
-  font: 28px bold "Hoefler Text", "Baskerville old face", Garamond, "Times New Roman", serif;
+  @include literary(28px);
 }
 
-.user-profile-entry {
-  margin-left: 15px;
-  border: 1px solid #ccc;
-  padding: 3px;
-  width: 350px;
-
-  .entry-text {
-    width: 325px;
-    font: 18px "Hoefler Text", "Baskerville old face", Garamond, "Times New Roman", serif;
+#contributed-stories {
+  blockquote.user-profile-entry {
+    @include literary;
+    padding: 0;
+    margin: 0;
   }
 
   .story-link {
-    width: 100%;
-    text-align: right;
+    overflow: hidden;
+
+    a {
+      float: right;
+    }
   }
 }

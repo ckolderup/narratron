@@ -1,22 +1,29 @@
+<h2>
+  <%= @user.display_name %>
+</h2>
 
-<div class="top-block">
-  <span class="display-name">
-    <%= @user.display_name %>
-  </span>
-  <span class="edit-link">
-    <%= link_to "Edit Info", edit_user_path(@user) %>
-  </span>
-</div>
+<p class="actions">
+  <%= link_to "Edit Info", edit_user_path(@user) %>
+</p>
 
-<h2>Stories Contributed To</h2>
-<div id="contributed-stories">
-  <% @user.entries.each do |e| %>
-    <div class="user-profile-entry">
-      <p class="entry-text"><%= e.text %></p>
+<% if @user.entries.present? %>
+  <h3>Contributions</h2>
+
+  <div id="contributed-stories">
+    <% @user.entries.each do |e| %>
+      <blockquote class="user-profile-entry">
+        <p><%= e.text %></p>
+      </blockquote>
+
       <div class="story-link">
         <%= link_to "View Story", entry_path(e) %>
       </div>
-    </div>
-  <% end %>
-</div>
 
+    <% end %>
+  </div>
+<% else %>
+  <p>
+    <strong>You haven&rsquo;t contributed to any stories yet.</strong>
+    You should join <%= link_to "today&rsquo;s public story".html_safe, today_path %>!
+  </p>
+<% end %>

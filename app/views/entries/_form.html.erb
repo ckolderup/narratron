@@ -1,3 +1,4 @@
+<% guidance = local_assigns[:guidance] || 'Your entry' %>
 <%= form_for @new_entry, html: { class: "new-entry" } do |f| %>
   <% if @new_entry.errors.any? %>
     <% @new_entry.errors.full_messages.each do |msg| %>
@@ -9,7 +10,7 @@
   <%= f.hidden_field :parent_id %>
 
   <p>
-    <%= f.label :text, class: "caption" %>
+    <%= f.label :text, guidance, class: "guidance" %>
     <%= f.text_area :text, autofocus: true %>
   </p>
 
