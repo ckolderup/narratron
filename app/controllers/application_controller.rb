@@ -31,6 +31,12 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def controller_slug
+    @controller_slug ||= "#{ params[:controller] }-#{ params[:action ]}"
+  end
+  helper_method :controller_slug
+
   def current_user
     @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
   end

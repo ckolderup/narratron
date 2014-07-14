@@ -1,0 +1,5 @@
+@mixin literary($font-size: 18px) {
+  font-size: $font-size;
+  line-height: ($font-size * 1.5);
+  font-family: "Hoefler Text", "Baskerville old face", Garamond, "Times New Roman", serif;
+}

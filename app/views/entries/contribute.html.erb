@@ -4,17 +4,15 @@
 
 <hr class="faded">
 
-<div class="guidance">
-  Continue the story with one new sentence.
-  <% if @entry.story.wrapping? %>
-    This is the final sentence in this story path!
-    Try to wrap it up as best you can.
-  <% end %>
-</div>
-
 <% if current_user %>
     <div class="entry-submission">
-      <%= render 'form' %>
+      <%
+        guidance = 'Continue the story with one new sentence.'
+        if @entry.story.wrapping?
+          guidance += 'This is the final sentence in this story path! Try to wrap it up as best you can.'
+        end
+      %>
+      <%= render 'form', guidance: guidance %>
     </div>
 <% else %>
   <div class="call-to-login">

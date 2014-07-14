@@ -5,8 +5,9 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=500, user-scalable=no">
 </head>
-<body>
+<body id="<%= controller_slug %>">
 
 <div id="banner">
   <p id="title"><%= link_to "Narratron", root_path %></p>
@@ -27,16 +28,24 @@
   <span id="credits">
     A <a href="http://twitter.com/ckolderup">@ckolderup</a> thing.
   </span>
-  <span id="user-nav">
-    <% if current_user %>
-      Currently logged in.
-      <%= link_to "View Profile", user_path(current_user) %>
-      <%= link_to "Log out", log_out_path %>
-    <% else %>
+  <% if current_user %>
+    <span id="user-status">
+      You are <%= current_user.display_name && current_user.display_name.strip.present? ? current_user.display_name : current_user.email %>.
+    </span>
+    <span id="user-actions">
+      <% if controller_slug == 'users-show' and @user and @user == current_user %>
+        This is your profile; you can
+      <% else %>
+        <%= link_to "View your profile", user_path(current_user) %> or
+      <% end %>
+      <%= link_to "log out", log_out_path %>.
+    </span>
+  <% else %>
+    <span id="user-actions">
       <%= link_to "Sign up", sign_up_path %> or
-      <%= link_to "log in", log_in_path %>
-    <% end %>
-  </div>
+      <%= link_to "log in", log_in_path %>.
+    </span>
+  <% end %>
 </div>
 
 </body>
