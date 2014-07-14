@@ -39,4 +39,8 @@ class Story < ActiveRecord::Base
   def contribution_from(user)
     entries.select { |e| e.user == user }.first
   end
+
+  def ready_to_wrap?
+    open? && entries.size > 4 && created_at < 1.day.ago
+  end
 end

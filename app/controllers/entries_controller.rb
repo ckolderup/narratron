@@ -88,6 +88,6 @@ class EntriesController < ApplicationController
   end
 
   def attempt_wrapping_story(story)
-    story.update(status: "wrapping") if story.open? && story.created_at < 1.day.ago
+    story.update(status: "wrapping") if story.ready_to_wrap?
   end
 end
