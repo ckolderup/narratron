@@ -14,4 +14,9 @@ class DaysController < ApplicationController
 
     redirect_to entry_path(@day.story.leaves.sample)
   end
+
+  def index
+    @public_stories = Day.where("date <= ?", Date.today)
+                         .order('date DESC').map(&:story)
+  end
 end

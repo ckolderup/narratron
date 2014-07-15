@@ -1,0 +1,29 @@
+<h2>Public Stories</h2>
+
+<% @public_stories.each do |story| %>
+  <h3>
+    <%= story.day.date.strftime("%A %e %B %Y") %>
+    <%= "(Active!)" unless story.closed? %>
+    <% if current_user && current_user.is_admin? %>
+      <span class="admin">
+        <%= link_to story.closed? ? "open" : "close",
+              story_toggle_status_path(story), method: "POST" %>
+      </span>
+    <% end %>
+  </h3>
+  <% if can_show_results(story) %>
+    <ul>
+    <% story.leaves.each do |leaf| %>
+      <li>
+      <%= link_to "Ending by #{leaf.user.display_name}", leaf %>
+      <%= branch_contains_contribution_flag(leaf) %>
+    <% end %>
+    </ul>
+  <% else %>
+    <p>
+      You haven't participated in this active story yet.
+      What are you waiting for?
+      <%= link_to "Add a sentence now!", story.leaves.sample %>
+    </p>
+  <% end %>
+<% end %>
