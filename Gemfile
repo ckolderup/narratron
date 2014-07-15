@@ -43,12 +43,14 @@ gem 'pg'
 
 # Use unicorn as the app server
 gem 'unicorn'
+gem 'rack-handlers'
 
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
 
 #so I can stop typing RAILS_ENV all the time
 gem 'foreman'
+
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]

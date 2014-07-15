@@ -92,6 +92,8 @@ GEM
     punkt-segmenter (0.9.1)
       unicode_utils (>= 1.0.0)
     rack (1.5.2)
+    rack-handlers (0.7.0)
+      rack
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.1.1)
@@ -173,6 +175,7 @@ DEPENDENCIES
   obfuscate_id!
   pg
   punkt-segmenter
+  rack-handlers
   rails (= 4.1.1)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
