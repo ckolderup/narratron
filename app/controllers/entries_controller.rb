@@ -36,16 +36,10 @@ class EntriesController < ApplicationController
 
     if @entry.nil?
       raise ActiveRecord::RecordNotFound
-    elsif @entry.story.closed?
+    elsif @entry.story.closed? || @entry.story.contributed?(current_user)
       leaf = @entry.leaf? ? @entry : @entry.leaves.sample
-      @entries = chronological_path_from_leaf(leaf)
       @story = leaf.story
-      render 'read' and return
-    elsif @entry.story.contributed?(current_user)
-      contribution = @entry.story.contribution_from(current_user)
-      leaf = contribution.leaf? ? contribution : contribution.leaves.sample
-      @entries = chronological_path_from_leaf(leaf)
-      @story = leaf.story
+      @entries = @story.paths(leaf).first
       render 'read' and return
     end
 
@@ -70,16 +64,6 @@ class EntriesController < ApplicationController
 
   def entry_params
     params.require(:entry).permit(:text, :parent_type, :parent_id)
-  end
-
-  def chronological_path_from_leaf(e)
-    if e.nil?
-      []
-    elsif e.parent_type == 'Story'
-      [e]
-    else
-      chronological_path_from_leaf(e.parent) << e
-    end
   end
 
   def attempt_closing_story(story)

@@ -43,4 +43,28 @@ class Story < ActiveRecord::Base
   def ready_to_wrap?
     open? && entries.size > 4 && created_at < 1.day.ago
   end
+
+  def paths(entry = nil)
+    if entry.nil?
+      eligible_leaves = leaves
+    elsif entry.leaf?
+      eligible_leaves = [entry]
+    else
+      eligible_leaves = entry.leaves
+    end
+
+    eligible_leaves.map { |e| paths_helper(e) }
+  end
+
+  private
+
+  def paths_helper(e)
+    if e.nil?
+      []
+    elsif e.parent_type == 'Story'
+      [e]
+    else
+      paths_helper(e.parent) << e
+    end
+  end
 end

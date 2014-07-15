@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
 
-    if admin_access? || current_user == @user
+    if current_user && (current_user.is_admin? || current_user == @user)
       render 'show'
     else
       flash[:error] == 'User profiles are currently private.'

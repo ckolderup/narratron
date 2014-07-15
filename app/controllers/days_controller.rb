@@ -2,7 +2,7 @@ class DaysController < ApplicationController
   def show
     @day ||= Day.find(params[:id])
     #TODO
-    #if admin_access?
+    #if current_user.is_admin?
     #  render 'days/admin'
     #else
     #end
@@ -13,5 +13,10 @@ class DaysController < ApplicationController
     @day = Day.find_by_date(Date.today.to_datetime)
 
     redirect_to entry_path(@day.story.leaves.sample)
+  end
+
+  def index
+    @public_stories = Day.where("date <= ?", Date.today)
+                         .order('date DESC').map(&:story)
   end
 end
