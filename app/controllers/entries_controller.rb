@@ -36,14 +36,8 @@ class EntriesController < ApplicationController
 
     if @entry.nil?
       raise ActiveRecord::RecordNotFound
-    elsif @entry.story.closed?
+    elsif @entry.story.closed? || @entry.story.contributed?(current_user)
       leaf = @entry.leaf? ? @entry : @entry.leaves.sample
-      @entries = chronological_path_from_leaf(leaf)
-      @story = leaf.story
-      render 'read' and return
-    elsif @entry.story.contributed?(current_user)
-      contribution = @entry.story.contribution_from(current_user)
-      leaf = contribution.leaf? ? contribution : contribution.leaves.sample
       @entries = chronological_path_from_leaf(leaf)
       @story = leaf.story
       render 'read' and return
