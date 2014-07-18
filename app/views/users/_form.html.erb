@@ -28,6 +28,6 @@
   <br />
     <%= f.password_field :password_confirmation %>
   </p>
-  <p class="button"><%= f.submit "Update #{ 'your' if current_user and current_user == f.object } profile" %></p>
+  <p class="button"><%= f.submit user_form_submit_button_text(f.object) %></p>
 <% end %>
 
