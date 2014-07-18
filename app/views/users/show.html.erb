@@ -7,7 +7,12 @@
 </p>
 
 <% if @contributions.present? %>
-  <h3>Contributions</h2>
+  <h3>
+    Contributions
+    <span class="contribution-count">
+      <%= @user.entries.size %>
+    </span>
+  </h3>
 
   <div id="contributed-stories">
     <% @contributions.each do |e| %>

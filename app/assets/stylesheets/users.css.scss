@@ -9,6 +9,19 @@ h2 {
   @include literary(28px);
 }
 
+h3 {
+  @include literary(24px);
+}
+
+.contribution-count {
+  font-size: 20px;
+  font-weight: normal;
+  margin-left: 20px;
+
+  &:before { content: "{" }
+  &:after  { content: "}" }
+}
+
 #contributed-stories {
   blockquote.user-profile-entry {
     @include literary;
