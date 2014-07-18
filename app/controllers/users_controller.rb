@@ -35,6 +35,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @contributions = Entry.where(user: @user)
+                          .paginate(page: params[:page])
+                          .order('created_at DESC')
 
     if current_user && (current_user.is_admin? || current_user == @user)
       render 'show'

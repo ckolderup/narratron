@@ -16,7 +16,8 @@ class DaysController < ApplicationController
   end
 
   def index
-    @public_stories = Day.where("date <= ?", Date.today)
-                         .order('date DESC').map(&:story)
+    @public_days = Day.where("date <= ?", Date.today)
+                      .paginate(page: params[:page])
+                      .order('date DESC')
   end
 end

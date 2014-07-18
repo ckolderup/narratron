@@ -51,6 +51,8 @@ gem 'capistrano-rails', group: :development
 #so I can stop typing RAILS_ENV all the time
 gem 'foreman'
 
+#pagination
+gem 'will_paginate', '~> 3.0'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]

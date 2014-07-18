@@ -15,6 +15,8 @@
 class Entry < ActiveRecord::Base
   obfuscate_id
 
+  self.per_page = 5
+
   belongs_to :story
   belongs_to :user
 

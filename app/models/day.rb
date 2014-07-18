@@ -12,6 +12,8 @@
 class Day < ActiveRecord::Base
   belongs_to :story
 
+  self.per_page = 5
+
   def to_date
     date.to_date
   end
