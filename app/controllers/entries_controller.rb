@@ -43,7 +43,7 @@ class EntriesController < ApplicationController
       render 'read' and return
     end
 
-    @entry = @entry.story.leaves.sample
+    @entry = @entry.leaves.sample
 
     @new_entry = @entry.entries.build
     @new_entry.ending = true if @entry.story.wrapping?
