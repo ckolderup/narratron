@@ -36,7 +36,7 @@ class EntriesController < ApplicationController
 
     if @entry.nil?
       raise ActiveRecord::RecordNotFound
-    elsif @entry.story.closed? || @entry.story.contributed?(current_user)
+    elsif can_show_story
       leaf = @entry.leaf? ? @entry : @entry.leaves.sample
       @story = leaf.story
       @entries = @story.paths(leaf).first
@@ -61,6 +61,10 @@ class EntriesController < ApplicationController
   end
 
   private
+
+  def can_show_story
+    @entry.story.closed? || @entry.story.contributed?(current_user)
+  end
 
   def entry_params
     params.require(:entry).permit(:text, :parent_type, :parent_id)
