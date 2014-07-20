@@ -10,13 +10,13 @@ class DaysController < ApplicationController
   end
 
   def today
-    @day = Day.find_by_date(Date.today.to_datetime)
+    @day = Day.find_by_date((Date.today - 8.hours).to_date)
 
     redirect_to entry_path(@day.story.leaves.sample)
   end
 
   def index
-    @public_days = Day.where("date <= ?", Date.today)
+    @public_days = Day.where("date <= ?", Date.today - 8.hours)
                       .paginate(page: params[:page])
                       .order('date DESC')
   end
