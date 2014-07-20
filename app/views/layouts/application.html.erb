@@ -14,7 +14,7 @@
   <ul id="nav">
     <li><%= link_to "Today", today_path %>
     <% if current_user && current_user.is_story_creator? %>
-      <li><%= link_to "+Story", new_entry_path %>
+      <li><%= link_to "New Story", new_entry_path %>
     <% end %>
     <li><%= link_to "Archives", archive_path %>
   </ul>
