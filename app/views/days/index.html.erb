@@ -16,7 +16,7 @@
     <ul>
     <% day.story.leaves.each do |leaf| %>
       <li>
-      <%= link_to "Ending by #{leaf.user.display_name}", leaf %>
+      <%= link_to "Ending by #{leaf.user == current_user ? 'you' : leaf.user.display_name}", leaf %>
       <%= "written #{time_ago_in_words(leaf.created_at)} ago" unless day.story.closed? %>
       <%= branch_contains_contribution_flag(leaf) %>
     <% end %>
