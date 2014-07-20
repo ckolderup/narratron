@@ -3,7 +3,7 @@
 <% @public_days.each do |day| %>
   <h3>
     <%= day.date.strftime("%A %e %B %Y") %>
-    <%= "(Active!)" unless day.story.closed? %>
+    <%= "(In Progress!)" unless day.story.closed? %>
     <% if current_user && current_user.is_admin? %>
       <span class="admin">
         <%= "wrapping... " if day.story.wrapping? %>
@@ -17,11 +17,12 @@
     <% day.story.leaves.each do |leaf| %>
       <li>
       <%= link_to "Ending by #{leaf.user.display_name}", leaf %>
+      <%= "written #{time_ago_in_words(leaf.created_at)} ago" unless day.story.closed? %>
       <%= branch_contains_contribution_flag(leaf) %>
     <% end %>
     </ul>
   <% else %>
-    <p>
+    <p class="open-story-call-to-action">
       You haven't participated in this active story yet.
       What are you waiting for?
       <%= link_to "Add a sentence now!", day.story.leaves.sample %>
