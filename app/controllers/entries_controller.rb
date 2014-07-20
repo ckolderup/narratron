@@ -47,6 +47,8 @@ class EntriesController < ApplicationController
 
     @new_entry = @entry.entries.build
     @new_entry.ending = true if @entry.story.wrapping?
+    @entries = @entry.story.paths(@entry).first
+    @entries.pop(2) #remove the one we're showing & the one we're writing
 
     render 'contribute'
   end

@@ -1,14 +1,27 @@
 @font-face {
     font-family: 'Crimson';
     src: asset-url(font-path('crimsontext-roman-webfont.eot') + "?#iefix") format('embedded-opentype'),
-         asset-url(font-path('crimsontext-roman-webfont.woff')) format('woff'), 
+         asset-url(font-path('crimsontext-roman-webfont.woff')) format('woff'),
          asset-url(font-path('crimsontext-roman-webfont.ttf'))  format('truetype'),
          asset-url(font-path('crimsontext-roman-webfont.svg') + "#MyFont") format('svg');
 }
 
+@font-face {
+    font-family: 'Redacted';
+    src: asset-url(font-path('redacted-script-light-webfont.eot') + "?#iefix") format('embedded-opentype'),
+         asset-url(font-path('redacted-script-light-webfont.woff')) format('woff'),
+         asset-url(font-path('redacted-script-light-webfont.ttf'))  format('truetype'),
+         asset-url(font-path('redacted-script-light-webfont.svg') + "#MyFont") format('svg');
+}
 
 @mixin literary($font-size: 22px) {
   font-size: $font-size;
   line-height: ($font-size * 1.5);
   font-family: "Crimson", "Baskerville old face", Garamond, "Times New Roman", serif;
+}
+
+@mixin redacted($font-size: 22px) {
+  font-size: $font-size;
+  line-height: ($font-size * 1.5);
+  font-family: "Redacted";
 }

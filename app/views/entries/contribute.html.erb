@@ -1,8 +1,24 @@
-<div class="entry-text">
-  <%= @entry.text %>
+<div class="current-story">
+  <% @entries.size.times do |e| %>
+    <span class="hidden-entry">
+      <%= fake_entry_text %>
+    </span>
+    <%= random_sentence_end_mark %>
+  <% end %>
+
+  <% if @entries.empty? %>
+    <div class="guidance">
+      The story begins here!
+    </div>
+  <% end %>
+
+  <span class="entry-text">
+    <%= @entry.text %>
+  </span>
 </div>
 
 <hr class="faded">
+
 
 <% if current_user %>
     <div class="entry-submission">
