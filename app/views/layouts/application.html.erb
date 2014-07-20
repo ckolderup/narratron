@@ -11,7 +11,14 @@
 
 <div id="banner">
   <p id="title"><%= link_to "Narratron", root_path %></p>
-  <p id="tag">Spin up a story.</span>
+  <ul id="nav">
+    <li><%= link_to "Today", today_path %>
+    <% if current_user && current_user.is_story_creator? %>
+      <li><%= link_to "+Story", new_entry_path %>
+    <% end %>
+    <li><%= link_to "Archives", archive_path %>
+  </ul>
+  <p id="tag">Spin up a story.</p>
 </div>
 
 <div id="notifications">

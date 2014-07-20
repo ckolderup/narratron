@@ -39,6 +39,20 @@ a:hover {
   }
 }
 
+#nav {
+  display: inline;
+  list-style: none;
+  text-align: center;
+
+  li {
+    display: inline;
+    list-style: none;
+    font-size: 16px;
+    padding: 15px;
+    vertical-align: baseline;
+  }
+}
+
 #tag {
   font-size: 14px;
   line-height: 40px;
