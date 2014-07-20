@@ -41,7 +41,8 @@ class Story < ActiveRecord::Base
   end
 
   def ready_to_wrap?
-    open? && entries.size > 4 && created_at < 1.day.ago
+    open? && entries.size > 4 &&
+    day.present? && day.date < (Date.today - 8.hours).to_date
   end
 
   def paths(entry = nil)

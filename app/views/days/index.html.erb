@@ -6,6 +6,7 @@
     <%= "(Active!)" unless day.story.closed? %>
     <% if current_user && current_user.is_admin? %>
       <span class="admin">
+        <%= "wrapping... " if day.story.wrapping? %>
         <%= link_to day.story.closed? ? "open" : "close",
               story_toggle_status_path(day.story), method: "POST" %>
       </span>

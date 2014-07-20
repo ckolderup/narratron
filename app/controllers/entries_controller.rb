@@ -12,8 +12,8 @@ class EntriesController < ApplicationController
     @entry.parent = Story.new if @entry.parent.nil?
 
     if @entry.save
-      attempt_wrapping_story(@entry.story)
       attempt_closing_story(@entry.story)
+      attempt_wrapping_story(@entry.story)
       redirect_to entry_path(@entry)
     else
       if @entry.parent.new_record?
