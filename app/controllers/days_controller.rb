@@ -12,19 +12,19 @@ class DaysController < ApplicationController
   end
 
   def today
-    @day = Day.find_by_date((Date.today - 8.hours).to_date)
+    @day = Day.find_by_date((DateTime.now - 8.hours).to_date)
 
     redirect_to entry_path(@day.story.leaves.sample)
   end
 
   def queue
-    @queued_days = Day.where("date > ?", Date.today - 8.hours)
+    @queued_days = Day.where("date > ?", DateTime.now - 8.hours)
                       .paginate(page: params[:page])
                       .order('date ASC')
   end
 
   def archive
-    @public_days = Day.where("date <= ?", Date.today - 8.hours)
+    @public_days = Day.where("date <= ?", DateTime.now - 8.hours)
                       .paginate(page: params[:page])
                       .order('date DESC')
   end

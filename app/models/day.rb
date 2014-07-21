@@ -19,6 +19,6 @@ class Day < ActiveRecord::Base
   end
 
   def self.today
-    Day.find_by_date (Date.today - 8.hours).to_date
+    Day.find_by_date (DateTime.now - 8.hours).to_date
   end
 end
