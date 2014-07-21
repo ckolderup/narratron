@@ -1,0 +1,29 @@
+<h2>Pending submissions</h2>
+
+<% @submissions.each do |submission| %>
+  <div class="pending-submission">
+    <h3 class="submission-title"><%= submission.title || "Untitled" %></h3>
+    <p class="submission-text"><%= submission.text %></p>
+    <p class="submission-author"><%= submission.author %></p>
+    <ul class="submission-actions">
+      <li>
+        <form action="<%= submission_assign_path(submission) %>" method="post">
+          <input name="authenticity_token" value="<%= form_authenticity_token %>"
+          type="hidden">
+          <label>Assign to date: </label>
+          <input type="submit" value="Do it"/>
+          <select name="date">
+            <% @unassigned_days.each do |day| %>
+              <option value="<%= day.strftime("%Y%m%d") %>">
+                <%= day.strftime("%A %d %b") %>
+              </option>
+            <% end %>
+          </select>
+        </form>
+      <li><%= link_to "delete", submission_path(submission), method: :delete %>
+    </ul>
+  </div>
+<% end %>
+
+<%= will_paginate @submissions, page_links: false %>
+

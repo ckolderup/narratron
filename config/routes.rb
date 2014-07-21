@@ -19,6 +19,11 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :entries
+
+  resources :submissions do
+    post '/assign' => 'submissions#assign', as: 'assign'
+  end
+
   resources :stories do
     post '/toggle_status' => 'stories#toggle_status', as: 'toggle_status'
   end
