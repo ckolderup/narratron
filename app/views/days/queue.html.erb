@@ -1,0 +1,24 @@
+<h2>Queued Stories</h2>
+
+<% @queued_days.each do |day| %>
+  <h3>
+    <%= day.date.strftime("%A %e %B %Y") %>
+  </h3>
+  <div class="entry-text">
+    <%= day.story.entry.text %>
+  </div>
+  <div class="entry-attribution">
+    Submission by
+    <%= day.story.thanks ||
+        day.story.entry.user.try(:display_name) ||
+        "Anonymous" %>
+  </div>
+  <ul class="admin-actions">
+    <li> <%= link_to "Delete", day_path(day), method: :delete %>
+    <li> TODO: reassign to a different day
+  </ul>
+
+<% end %>
+
+<%= will_paginate @queued_days, page_links: false %>
+

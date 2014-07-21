@@ -1,4 +1,6 @@
 class DaysController < ApplicationController
+  before_filter :authorize, only: [:queue, :destroy]
+
   def show
     @day ||= Day.find(params[:id])
     #TODO
@@ -15,9 +17,21 @@ class DaysController < ApplicationController
     redirect_to entry_path(@day.story.leaves.sample)
   end
 
-  def index
+  def queue
+    @queued_days = Day.where("date > ?", Date.today - 8.hours)
+                      .paginate(page: params[:page])
+                      .order('date ASC')
+  end
+
+  def archive
     @public_days = Day.where("date <= ?", Date.today - 8.hours)
                       .paginate(page: params[:page])
                       .order('date DESC')
+  end
+
+  def destroy
+    @day = Day.find(params[:id])
+    flash[:message] = "Day deleted!" if @day.destroy
+    redirect_back_or_default(queue_path)
   end
 end

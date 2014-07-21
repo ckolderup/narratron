@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   get 'users/new'
 
   get "today" => "days#today", as: "today"
-  get "archive" => "days#index", as: "archive"
+  get "queue" => "days#queue", as: "queue"
+  get "archive" => "days#archive", as: "archive"
 
   get "log_out" => "sessions#destroy", as: "log_out"
   get "log_in" => "sessions#new", as: "log_in"
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
+  resources :days
   resources :users
   resources :sessions
   resources :entries
