@@ -43,7 +43,7 @@ class EntriesController < ApplicationController
       render 'read' and return
     end
 
-    @entry = @entry.leaf? ? @entry : @entry.leaves.sample
+    @entry = leaf_with_shortest_path(@entry.leaves, @entry.story) unless @entry.leaf?
 
     @new_entry = @entry.entries.build
     @new_entry.ending = true if @entry.story.wrapping?
@@ -79,5 +79,10 @@ class EntriesController < ApplicationController
 
   def attempt_wrapping_story(story)
     story.update(status: "wrapping") if story.ready_to_wrap?
+  end
+
+  def leaf_with_shortest_path(leaves, story)
+    leaves.inject({}) { |m,k| m.update(k => story.paths(k).first.size) }
+          .min_by(&:last).first
   end
 end
