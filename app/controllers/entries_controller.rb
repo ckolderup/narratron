@@ -65,7 +65,7 @@ class EntriesController < ApplicationController
   private
 
   def can_show_story
-    @entry.story.closed? || @entry.story.contributed?(current_user)
+    @entry.story.closed? || (current_user && @entry.story.contributed?(current_user))
   end
 
   def entry_params
