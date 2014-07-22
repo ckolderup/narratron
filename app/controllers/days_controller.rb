@@ -12,13 +12,13 @@ class DaysController < ApplicationController
   end
 
   def today
-    @day = Day.find_by_date((DateTime.now - 8.hours).to_date)
+    @day = Day.find_by_date(Day.pacific_time.to_date)
 
     redirect_to entry_path(@day.story.leaves.sample)
   end
 
   def queue
-    @queued_days = Day.where("date > ?", DateTime.now - 8.hours)
+    @queued_days = Day.where("date > ?", Day.pacific_time)
                       .paginate(page: params[:page])
                       .order('date ASC')
   end
