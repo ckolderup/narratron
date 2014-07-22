@@ -11,6 +11,16 @@ module EntriesHelper
     ("." * 20 << "!" << "?").split("").sample
   end
 
+  def attribution_text(entry)
+    if current_user && entry.user == current_user
+      'you'
+    elsif entry.user.present?
+      entry.user.display_name
+    else
+      'Anonymous'
+    end
+  end
+
   FAKE_TEXT =
 <<-EULA
   END-USER LICENSE AGREEMENT FOR MICROSOFT SOFTWARE

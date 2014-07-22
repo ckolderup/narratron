@@ -56,7 +56,7 @@
   <% end %>
   <% unless @entries.empty? %>
     Sentences in this story path were contributed by
-    <%= @entries.map { |e| (current_user && e.user == current_user) ? 'you' : e.user.display_name || "Anonymous" }.to_sentence %>.
+    <%= @entries.map { |e| attribution_text(e) }.to_sentence %>.
   <% end %>
   </p>
 </div>
