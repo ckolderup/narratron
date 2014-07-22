@@ -24,7 +24,7 @@ class DaysController < ApplicationController
   end
 
   def archive
-    @public_days = Day.where("date <= ?", DateTime.now - 8.hours)
+    @public_days = Day.where("date <= ?", Day.pacific_time)
                       .paginate(page: params[:page])
                       .order('date DESC')
   end
