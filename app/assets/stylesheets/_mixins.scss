@@ -7,6 +7,15 @@
 }
 
 @font-face {
+    font-family: 'Crimson';
+    src: asset-url(font-path('crimsontext-bold-webfont.eot') + "?#iefix") format('embedded-opentype'),
+         asset-url(font-path('crimsontext-bold-webfont.woff')) format('woff'),
+         asset-url(font-path('crimsontext-bold-webfont.ttf'))  format('truetype'),
+         asset-url(font-path('crimsontext-bold-webfont.svg') + "#MyFont") format('svg');
+    font-weight: bold;
+ }
+
+@font-face {
     font-family: 'Redacted';
     src: asset-url(font-path('redacted-script-light-webfont.eot') + "?#iefix") format('embedded-opentype'),
          asset-url(font-path('redacted-script-light-webfont.woff')) format('woff'),
