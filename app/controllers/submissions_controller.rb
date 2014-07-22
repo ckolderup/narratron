@@ -23,7 +23,10 @@ class SubmissionsController < ApplicationController
 
     story = Story.new(thanks: submission.author)
     entry = Entry.new(text: submission.text, parent: story)
-    entry.save
+    unless story.save && entry.save
+      flash[:error] = entry.errors.to_a.join(", ")
+      redirect_to submissions_path and return
+    end
 
     params.permit(:date)
     if day = Day.create(date: Date.parse(params[:date]), story: story)
