@@ -19,7 +19,7 @@ class SubmissionsController < ApplicationController
 
   def assign
     params.permit(:date)
-    submission = Submission.first(params[:id])
+    submission = Submission.find(params[:submission_id])
 
     story = Story.new(thanks: submission.author)
     entry = Entry.new(text: submission.text, parent: story)
