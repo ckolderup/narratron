@@ -14,7 +14,7 @@
   <ul id="nav">
     <li><%= link_to "Today", today_path %>
     <li><%= link_to "Submit Story", new_submission_path %>
-    <% if current_user && current_user.is_story_creator? %>
+    <% if current_user && (current_user.admin? || current_user.story_creator?) %>
       <li><%= link_to "New Story", new_entry_path %>
     <% end %>
     <li><%= link_to "Archives", archive_path %>

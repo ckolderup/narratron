@@ -49,11 +49,4 @@ class User < ActiveRecord::Base
     end
   end
 
-  def is_admin?
-    admin
-  end
-
-  def is_story_creator?
-    admin || story_creator
-  end
 end

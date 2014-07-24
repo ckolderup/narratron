@@ -39,7 +39,7 @@ class UsersController < ApplicationController
                           .paginate(page: params[:page])
                           .order('created_at DESC')
 
-    if current_user && (current_user.is_admin? || current_user == @user)
+    if current_user && (current_user.admin? || current_user == @user)
       render 'show'
     else
       flash[:error] == 'User profiles are currently private.'
