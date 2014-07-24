@@ -1,3 +1,12 @@
+<% unless current_user %>
+  <div class="guidance">
+    The following is a story, but you can't read it
+    until you've contributed to it! Take a look at 
+    the last sentence written and log in to add your
+    own&mdash;only then will the full story be revealed...
+  </div>
+<% end %>
+
 <div class="current-story">
   <% @entries.size.times do |e| %>
     <span class="hidden-entry">
@@ -21,16 +30,19 @@
 
 
 <% if current_user %>
-    <div class="entry-submission">
-      <%
-        guidance = 'Continue the story with one new sentence.'
-        if @entry.story.wrapping?
-          guidance += 'This is the final sentence in this story path! Try to wrap it up as best you can.'
-        end
-      %>
-      <%= render 'form', guidance: guidance %>
-    </div>
+  <div class="entry-submission">
+    <%
+      guidance = 'Continue the story with one new sentence.'
+      if @entry.story.wrapping?
+        guidance += 'This is the final sentence in this story path! Try to wrap it up as best you can.'
+      end
+    %>
+    <%= render 'form', guidance: guidance %>
+  </div>
 <% else %>
+  <div class="guidance">
+    Ready to write the next sentence?
+  </div>
   <div class="call-to-login">
     <%= link_to "Sign up", sign_up_path %> or
     <%= link_to "log in", log_in_path %> first!
