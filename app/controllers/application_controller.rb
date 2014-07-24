@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def allow_story_creation
-    unless current_user && current_user.story_creator?
+    unless current_user && (current_user.admin? || current_user.story_creator?)
       flash[:error] = "Unauthorized access"
       redirect_back_or_default(root_path)
       false
