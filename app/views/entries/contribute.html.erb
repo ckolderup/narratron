@@ -1,11 +1,23 @@
-<% unless current_user %>
-  <div class="guidance">
-    The following is a story, but you can't read it
-    until you've contributed to it! Take a look at 
-    the last sentence written and log in to add your
-    own&mdash;only then will the full story be revealed...
-  </div>
-<% end %>
+<div class="guidance">
+  <% if @entries.empty? %>
+    <% if current_user %>
+      The story begins here:
+    <% else %>
+      What follows is the first sentence in a story.
+      Read it and consider what the next sentence would be,
+      then log in to add it so the game can begin!
+    <% end %>
+  <% else %>
+    <% if current_user %>
+      The story so far:
+    <% else %>
+      The following is a story, but you can't read it
+      until you've contributed to it! Take a look at
+      the last sentence written and log in to add your
+      own&mdash;only then will the full story be revealed...
+    <% end %>
+  <% end %>
+</div>
 
 <div class="current-story">
   <% @entries.size.times do |e| %>
@@ -15,11 +27,6 @@
     <%= random_sentence_end_mark %>
   <% end %>
 
-  <% if @entries.empty? %>
-    <div class="guidance">
-      The story begins here!
-    </div>
-  <% end %>
 
   <span class="entry-text">
     <%= @entry.text %>
