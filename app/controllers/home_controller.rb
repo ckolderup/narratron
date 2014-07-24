@@ -4,6 +4,9 @@ class HomeController < ApplicationController
   def index
   end
 
+  def about
+  end
+
   def archive
     public_days = Day.where("date <= ?", Day.pacific_time)
                      .map { |d| [d.story, d.date] }

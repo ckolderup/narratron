@@ -18,6 +18,13 @@
       <li><%= link_to "New Story", new_entry_path %>
     <% end %>
     <li><%= link_to "Archives", archive_path %>
+    <li><%= link_to "About", about_path %>
+    <% if current_user %>
+      <li><%= link_to "Your profile", user_path(current_user) %>
+      <li><%= link_to "Log In", log_in_path %>
+    <% else %>
+      <li><%= link_to "Log Out", log_out_path %>
+    <% end %>
   </ul>
   <p id="tag">Spin up a story.</p>
 </div>
@@ -30,30 +37,6 @@
 
 <div id="content">
   <%= yield %>
-</div>
-
-<div id="footer">
-  <span id="credits">
-    A <a href="http://twitter.com/ckolderup">@ckolderup</a> thing.
-  </span>
-  <% if current_user %>
-    <span id="user-status">
-      You are <%= current_user.display_name && current_user.display_name.strip.present? ? current_user.display_name : current_user.email %>.
-    </span>
-    <span id="user-actions">
-      <% if controller_slug == 'users-show' and @user and @user == current_user %>
-        This is your profile; you can
-      <% else %>
-        <%= link_to "View your profile", user_path(current_user) %> or
-      <% end %>
-      <%= link_to "log out", log_out_path %>.
-    </span>
-  <% else %>
-    <span id="user-actions">
-      <%= link_to "Sign up", sign_up_path %> or
-      <%= link_to "log in", log_in_path %>.
-    </span>
-  <% end %>
 </div>
 
 </body>

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   root to: "home#index"
   get "archive" => "home#archive", as: "archive"
+  get "about" => "home#about", as: "about"
 
   resources :days
   resources :users
