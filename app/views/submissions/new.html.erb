@@ -18,7 +18,7 @@
 
   <p>
     <%= f.label :author, "Author credit", class: "guidance" %>
-    <%= f.text_field :author %>
+    <%= f.text_field :author, :value => (current_user.display_name if current_user) %>
 
   <p class="submit-submission">
     <%= f.submit 'Submit', class: "submit-submission-button" %>
