@@ -13,6 +13,7 @@
   <p id="title"><%= link_to "Narratron", root_path %></p>
   <ul id="nav">
     <li><%= link_to "Today", today_path %>
+    <li><%= link_to "Submit Story", new_submission_path %>
     <% if current_user && current_user.is_story_creator? %>
       <li><%= link_to "New Story", new_entry_path %>
     <% end %>
