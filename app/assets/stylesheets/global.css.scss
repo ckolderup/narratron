@@ -39,18 +39,22 @@ a:hover {
   }
 }
 
-#nav {
-  display: inline;
+.nav {
   list-style: none;
   text-align: center;
+  line-height: 40px;
+  margin: 0;
 
   li {
     display: inline;
     list-style: none;
-    font-size: 16px;
-    padding: 15px;
-    vertical-align: baseline;
+    font-size: 14px;
+    padding: 8px;
   }
+}
+
+#banner .nav {
+  float: left;
 }
 
 #tag {
@@ -62,7 +66,7 @@ a:hover {
 
 #footer {
   text-align: center;
-  margin: 20px auto 5px;
+  margin: auto 5px;
 }
 
 #user-actions {
@@ -78,6 +82,11 @@ a:hover {
 
 #content {
   margin: 30px auto;
+}
+
+.pagination {
+  text-align: center;
+  margin-top: 50px;
 }
 
 #flash_message {
@@ -131,7 +140,7 @@ hr.faded {
   clear: both; 
   float: none; 
   height: 1px;
-  margin: 30px 0 29px;
+  margin: 5px 0 5px;
   border: none; 
   background: #ddd;
   background-image: -webkit-gradient(
