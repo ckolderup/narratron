@@ -5,7 +5,6 @@ Rails.application.routes.draw do
 
   get "today" => "days#today", as: "today"
   get "queue" => "days#queue", as: "queue"
-  get "archive" => "days#archive", as: "archive"
 
   get "log_out" => "sessions#destroy", as: "log_out"
   get "log_in" => "sessions#new", as: "log_in"
@@ -14,6 +13,7 @@ Rails.application.routes.draw do
   get '/e/:id' => 'entries#find', as: 'find_entry'
 
   root to: "home#index"
+  get "archive" => "home#archive", as: "archive"
 
   resources :days
   resources :users

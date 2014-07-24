@@ -11,6 +11,8 @@
 class Story < ActiveRecord::Base
   obfuscate_id
 
+  self.per_page = 5
+
   has_one :day
   has_one :entry, as: :parent, dependent: :destroy
 

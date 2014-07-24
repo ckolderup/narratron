@@ -1,0 +1,34 @@
+<h2>Available Stories</h2>
+
+<% @stories.each do |story| %>
+  <h3>
+    <%= story_title(story) %>
+  </h3>
+  <% if current_user && current_user.is_admin? %>
+    <span class="admin">
+      <%= "wrapping... " if story.wrapping? %>
+      <%= link_to story.closed? ? "open" : "close",
+            story_toggle_status_path(story), method: "POST" %>
+    </span>
+  <% end %>
+  <% if can_show_results(story) %>
+    <ul>
+    <% story.leaves.each do |leaf| %>
+      <li>
+      <%= link_to "Ending by #{leaf.user == current_user ? 'you' : leaf.user.display_name}", leaf %>
+      <%= "written #{time_ago_in_words(leaf.created_at)} ago" unless story.closed? %>
+      <%= branch_contains_contribution_flag(leaf) %>
+    <% end %>
+    </ul>
+  <% else %>
+    <p class="open-story-call-to-action">
+      You haven't participated in this active story yet.
+      What are you waiting for?
+      <%= link_to "Add a sentence now!", story.leaves.sample %>
+    </p>
+  <% end %>
+
+<% end %>
+
+<%= will_paginate @stories, page_links: false %>
+

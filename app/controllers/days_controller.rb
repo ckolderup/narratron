@@ -23,12 +23,6 @@ class DaysController < ApplicationController
                       .order('date ASC')
   end
 
-  def archive
-    @public_days = Day.where("date <= ?", Day.pacific_time)
-                      .paginate(page: params[:page])
-                      .order('date DESC')
-  end
-
   def destroy
     @day = Day.find(params[:id])
     flash[:message] = "Day deleted!" if @day.destroy
