@@ -39,6 +39,7 @@ GEM
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
     arel (5.0.1.20140414130214)
+    awesome_print (1.2.0)
     base58 (0.1.0)
     bcrypt (3.1.7)
     builder (3.2.2)
@@ -165,6 +166,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate (>= 2.6.0)
+  awesome_print
   base58
   bcrypt (~> 3.1.7)
   capistrano
