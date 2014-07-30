@@ -41,10 +41,11 @@ gem 'pg'
 gem 'unicorn'
 gem 'rack-handlers'
 
-# Use Capistrano for deployment
-
 #so I can stop typing RAILS_ENV all the time
 gem 'foreman'
+
+#Mandrill API for transactional emails
+gem 'mandrill-api'
 
 #pagination
 gem 'will_paginate', '~> 3.0'
