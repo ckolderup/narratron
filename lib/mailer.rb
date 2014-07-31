@@ -8,7 +8,7 @@ module Mailer
     config = {
       :html => body,
       :from_email => "feedback@narratron.com",
-      :from_name => "Narratron",
+      :from_name => "Narratron Admins",
       :subject => subject,
       :to => [ {:email => email_address} ],
       :async => true
