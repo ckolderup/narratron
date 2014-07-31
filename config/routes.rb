@@ -21,6 +21,13 @@ Rails.application.routes.draw do
   resources :sessions
   resources :entries
 
+  get '/recover_password' => 'password_recoveries#new', as: 'recover_password'
+  post '/recover_password' => 'password_recoveries#create',
+    as: 'create_password_recovery'
+  get '/reset_password' => 'password_recoveries#lookup',
+    as: 'lookup_password_recovery'
+  post '/reset_password' => 'password_recoveries#reset', as: 'reset_password'
+
   resources :submissions do
     post '/assign' => 'submissions#assign', as: 'assign'
   end
