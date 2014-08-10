@@ -3,8 +3,8 @@ module EntriesHelper
     e.created_at.strftime("%A, %B %e %Y")
   end
 
-  def fake_entry_text
-    "%-10s" % FAKE_TEXT.split(".").sample
+  def fake_entry_text(length)
+    "%-10s" % FAKE_TEXT.split(".").sample.truncate(length)
   end
 
   def random_sentence_end_mark

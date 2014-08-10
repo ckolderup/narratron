@@ -20,9 +20,9 @@
 </div>
 
 <div class="current-story">
-  <% @entries.size.times do |e| %>
+  <% @entries.each do |e| %>
     <span class="hidden-entry">
-      <%= fake_entry_text %>
+      <%= fake_entry_text(e.text.length) %>
     </span>
     <%= random_sentence_end_mark %>
   <% end %>
