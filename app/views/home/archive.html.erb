@@ -4,7 +4,7 @@
   <h3>
     <%= story_title(story) %>
   </h3>
-  <% if current_user && current_user.admin? %>
+  <% if story.can_be_edited?(current_user) %>
     <span class="admin">
       <%= "wrapping... " if story.wrapping? %>
       <%= link_to story.closed? ? "open" : "close",

@@ -28,6 +28,18 @@
         own sentence!
       </p>
     <% end %>
+    <% if @story.can_be_edited?(current_user) %>
+      <p>
+        <% if @story.closed? %>
+          This story has been closed by an admin or the story's creator.
+          <%= link_to "Click here", story_toggle_status_path(@story) %> to open it.
+        <% else %>
+          As an admin or the creator of this story, you may
+          <%= link_to "close it", story_toggle_status_path(@story) %>
+          to end contributions.
+        <% end %>
+      </p>
+    <% end %>
   <% else %>
     The preceding was a story written by Narratron community members
     <% if @entries.first.created_at.to_date == @entries.last.created_at.to_date %>

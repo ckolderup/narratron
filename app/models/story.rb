@@ -59,6 +59,11 @@ class Story < ActiveRecord::Base
     eligible_leaves.map { |e| paths_helper(e) }
   end
 
+  def can_be_edited?(user)
+    user.present? &&
+      (entry.user == user || user.admin?)
+  end
+
   private
 
   def paths_helper(e)
