@@ -19,6 +19,12 @@
     <% end %>
     <li><%= link_to "Archives", archive_path %>
   </ul>
+  <% if current_user && current_user.admin? %>
+    <ul class="nav admin-nav">
+      <li><%= link_to "Queued Stories", queue_path %>
+      <li><%= link_to "User Submissions", submissions_path %>
+    </ul>
+  <% end %>
   <p id="tag">Spin up a story.</p>
 </div>
 
