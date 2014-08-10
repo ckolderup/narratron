@@ -64,10 +64,14 @@ class Entry < ActiveRecord::Base
   end
 
   def entry_text_is_only_one_sentence
-    tokenizer = Punkt::SentenceTokenizer.new(text)
-    result    = tokenizer.sentences_from_text(text, :output => :sentences_text)
-    if result.reject { |s| s.length <= 1 }.size > 1
-      errors.add(:base, "Entries must be made up of one sentence only")
+    if text.blank?
+      errors.add(:base, "Entry text must not be empty"
+    else
+      tokenizer = Punkt::SentenceTokenizer.new(text)
+      result    = tokenizer.sentences_from_text(text, :output => :sentences_text)
+      if result.reject { |s| s.length <= 1 }.size > 1
+        errors.add(:base, "Entries must be made up of one sentence only")
+      end
     end
   end
 end
