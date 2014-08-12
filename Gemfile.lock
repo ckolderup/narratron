@@ -1,4 +1,10 @@
 GIT
+  remote: https://github.com/kapilkale/logglier.git
+  revision: 888c9c6e2826265b22918118ea172be31656e7f7
+  specs:
+    logglier (0.2.8.2)
+
+GIT
   remote: https://github.com/namick/obfuscate_id.git
   revision: cfd58d6415c9def363884d682836807390849c11
   specs:
@@ -175,6 +181,7 @@ DEPENDENCIES
   foreman
   jbuilder (~> 2.0)
   jquery-rails
+  logglier!
   obfuscate_id!
   pg
   punkt-segmenter

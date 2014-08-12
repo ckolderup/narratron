@@ -49,6 +49,9 @@ gem 'foreman'
 #pagination
 gem 'will_paginate', '~> 3.0'
 
+#using a fork of logglier for rails 4.x support
+gem 'logglier', git: 'https://github.com/kapilkale/logglier.git'
+
 group :development do
   gem 'awesome_print'
   gem 'capistrano-rails'
