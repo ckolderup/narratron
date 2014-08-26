@@ -14,7 +14,11 @@ class DaysController < ApplicationController
   def today
     @day = Day.find_by_date(Day.pacific_time.to_date)
 
-    redirect_to entry_path(@day.story.leaves.sample)
+    if @day.present?
+      redirect_to entry_path(@day.story.leaves.sample)
+    else
+      render 'days/none'
+    end
   end
 
   def queue
