@@ -3,8 +3,8 @@ class SubmissionsController < ApplicationController
 
   def index
     @submissions = Submission.paginate(page: params[:page]).order('created_at DESC')
-    next_ten_days = (0..9).map { |x| (Day.pacific_time + x.days).to_date }
-    @unassigned_days = next_ten_days.reject { |d| Day.exists?(date: d) }
+    next_twenty_days = (0..19).map { |x| (Day.pacific_time + x.days).to_date }
+    @unassigned_days = next_twenty_days.reject { |d| Day.exists?(date: d) }
   end
 
   def new
