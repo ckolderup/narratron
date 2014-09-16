@@ -15,7 +15,7 @@
     <ul>
     <% story.leaves.each do |leaf| %>
       <li>
-      <%= link_to "Ending by #{leaf.user == current_user ? 'you' : leaf.user.display_name}", leaf %>
+      <%= link_to "Ending by #{last_author_display(leaf)}", leaf %>
       <%= "written #{time_ago_in_words(leaf.created_at)} ago" unless story.closed? %>
       <%= branch_contains_contribution_flag(leaf) %>
     <% end %>
@@ -29,6 +29,5 @@
   <% end %>
 
 <% end %>
-
 <%= will_paginate @stories, page_links: false %>
 
