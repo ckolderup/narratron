@@ -1,4 +1,4 @@
-root = "/home/casey/src/narratron/"
+root = "/Users/casey/src/narratron/"
 working_directory root
 pid "#{root}/tmp/pids/unicorn.pid"
 stderr_path "#{root}/log/unicorn.log"

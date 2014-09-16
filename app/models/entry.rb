@@ -28,6 +28,8 @@ class Entry < ActiveRecord::Base
   validate :user_only_writes_once_per_story
   validate :entry_text_is_only_one_sentence
 
+  attr_accessor :override_sentence_limit
+
   def story
     if parent_type == 'Story'
       parent
@@ -64,7 +66,7 @@ class Entry < ActiveRecord::Base
   end
 
   def entry_text_is_only_one_sentence
-    unless text.blank? #the other validation will catch this, so just skip
+    unless override_sentence_limit || text.blank? #the other validation will catch blank text
       tokenizer = Punkt::SentenceTokenizer.new(text)
       result    = tokenizer.sentences_from_text(text, :output => :sentences_text)
       if result.reject { |s| s.length <= 1 }.size > 1

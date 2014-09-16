@@ -22,7 +22,7 @@ class SubmissionsController < ApplicationController
     submission = Submission.find(params[:submission_id])
 
     story = Story.new(thanks: submission.author)
-    entry = Entry.new(text: submission.text, parent: story)
+    entry = Entry.new(text: submission.text, parent: story, override_sentence_limit: true)
     unless story.save && entry.save
       flash[:error] = entry.errors.to_a.join(", ")
       redirect_to submissions_path and return
