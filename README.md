@@ -17,6 +17,12 @@ This is my first Rails app so I'm still working out all the Rails-y specifics, b
  * Using rbenv and bundler
  * postgresql in development and production
 
+## Got all the stuff! How do I run it?
+
+ * run `bundle install` to install all the gem dependencies.
+ * run `bundle exec rake db:create` and `bundle exec rake db:migrate` to get your db set up
+ * run `bundle exec foreman start` to start unicorn.
+
 ## Can I help?
 
 Probably! If you spot anything small that needs fixing, you're welcome to send a pull request. For anything bigger I'd love to discuss it first—feel free to get in touch with me and we can chat.
