@@ -35,6 +35,8 @@ class EntriesController < ApplicationController
     decoded = Base58.decode(params[:id])
     @entry = Entry.find(decoded)
 
+    @entry.story.close_public_if_ready
+
     edits_allowed = @entry.story.can_be_edited?(current_user)
     delete_mode = edits_allowed & !!params[:delete].present?
 

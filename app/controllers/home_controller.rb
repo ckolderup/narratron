@@ -25,5 +25,7 @@ class HomeController < ApplicationController
 
     current_page = [params[:page].to_i, 1].max
     @stories = all_stories.paginate(page: current_page, per_page: Story.per_page)
+
+    @stories.each { |s| s.close_public_if_ready }
   end
 end

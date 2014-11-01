@@ -34,10 +34,12 @@
       <p>
         <% if @story.closed? %>
           This story has been closed by an admin or the story's creator.
-          <%= link_to "Click here", story_toggle_status_path(@story) %> to open it.
+          <% unless @story.stale_public_story? %>
+            <%= link_to "Click here", story_toggle_status_path(@story), method: :post %> to open it.
+          <% end %>
         <% else %>
           As an admin or the creator of this story, you may
-          <%= link_to "close it", story_toggle_status_path(@story) %>
+          <%= link_to "close it", story_toggle_status_path(@story), method: :post %>
           to end contributions.
         <% end %>
         <% if delete_mode %>

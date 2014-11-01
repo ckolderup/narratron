@@ -43,8 +43,15 @@ class Story < ActiveRecord::Base
   end
 
   def ready_to_wrap?
-    open? && entries.size > 4 &&
+    open? && entries.size > 4 && stale_public_story?
+  end
+
+  def stale_public_story?
     day.present? && day.date < Day.pacific_time.to_date
+  end
+
+  def close_public_if_ready
+    update status: :closed if stale_public_story?
   end
 
   def paths(entry = nil)

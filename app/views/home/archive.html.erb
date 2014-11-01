@@ -6,9 +6,13 @@
   </h3>
   <% if story.can_be_edited?(current_user) %>
     <span class="admin">
-      <%= "wrapping... " if story.wrapping? %>
-      <%= link_to story.closed? ? "open" : "close",
-            story_toggle_status_path(story), method: "POST" %>
+      <% if story.closed? && story.stale_public_story? %>
+        auto-closed by date
+      <% else %>
+        <%= "wrapping... " if story.wrapping? %>
+        <%= link_to story.closed? ? "open" : "close",
+          story_toggle_status_path(story), method: "POST" %>
+      <% end %>
     </span>
   <% end %>
   <% if can_show_results(story) %>
