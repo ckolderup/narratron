@@ -31,16 +31,20 @@ class EntriesController < ApplicationController
   end
 
   def find
+    Rails.logger.info("locating entry #{params[:id]}")
     decoded = Base58.decode(params[:id])
     @entry = Entry.find(decoded)
 
+    edits_allowed = @entry.story.can_be_edited?(current_user)
+    delete_mode = edits_allowed & !!params[:delete].present?
+
     if @entry.nil?
       raise ActiveRecord::RecordNotFound
-    elsif can_show_story
+    elsif can_show_story || delete_mode
       leaf = @entry.leaf? ? @entry : @entry.leaves.sample
       @story = leaf.story
       @entries = @story.paths(leaf).first
-      render 'read' and return
+      render('read', locals: {delete_mode: delete_mode}) and return
     end
 
     @entry = leaf_with_shortest_path(@entry.leaves, @entry.story) unless @entry.leaf?
@@ -54,12 +58,20 @@ class EntriesController < ApplicationController
   end
 
   def destroy
-    @entry = current_user.entries.find(params[:id])
+    @entry = Entry.find(params[:id])
 
-    @entry.destroy
-    flash.notice 'Entry deleted.'
+    user_can_destroy = @entry.story.can_be_edited?(current_user)
+    user_owns_entry = current_user && @entry.user == current_user
 
-    redirect_to story_index
+    if user_can_destroy || user_owns_entry
+      entry_parent = @entry.parent
+      @entry.destroy
+      flash[:message] = 'Entry deleted.'
+    else
+      flash[:error] = 'Unauthorized action!'
+    end
+
+    redirect_to entry_path(entry_parent)
   end
 
   private

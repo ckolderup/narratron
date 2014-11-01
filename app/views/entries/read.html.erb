@@ -1,8 +1,10 @@
+<% delete_mode ||= false %>
+
 <div class="story-text">
   <% @entries.each do |e| %>
     <span class="entry <%= 'yours' if e.user == current_user %>">
-    <%= e.text %>
-  </span>
+      <%= link_to_if delete_mode, e.text, entry_path(e), method: :delete %>
+    </span>
 <% end %>
 </div>
 
