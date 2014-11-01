@@ -27,7 +27,7 @@ class EntriesController < ApplicationController
 
   def show
     encoded = Base58.encode(params[:id].to_i)
-    redirect_to find_entry_path(@entry, {id: encoded})
+    redirect_to find_entry_path(@entry, {id: encoded, delete: params[:delete]})
   end
 
   def find

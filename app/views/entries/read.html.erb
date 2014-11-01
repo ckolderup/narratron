@@ -40,6 +40,14 @@
           <%= link_to "close it", story_toggle_status_path(@story) %>
           to end contributions.
         <% end %>
+        <% if delete_mode %>
+          You are currently in DELETE MODE.
+          <%= link_to "Click here", entry_path(@entries.last) %> to exit it.
+        <% else %>
+          You have permission to delete entries from this story if necessary.
+          <%= link_to "Click here", entry_path(@entries.last, params: {delete: true}) %>
+          to switch to DELETE MODE.
+        <% end %>
       </p>
     <% end %>
   <% else %>
