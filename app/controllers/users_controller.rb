@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      flash[:notice] = "Details updated!"
+      flash[:message] = "Details updated!"
       redirect_back_or_default(user_path(@user))
     else
       render "edit"
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      flash[:notice] = "Signed up!"
+      flash[:message] = "Signed up!"
       redirect_back_or_default(root_url)
     else
       render "new"
