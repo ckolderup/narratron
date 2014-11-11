@@ -45,7 +45,7 @@
         <% if delete_mode %>
           You are currently in DELETE MODE.
           <%= link_to "Click here", entry_path(@entries.last) %> to exit it.
-        <% else %>
+        <% elsif current_user && current_user.admin? %>
           You have permission to delete entries from this story if necessary.
           <%= link_to "Click here", entry_path(@entries.last, params: {delete: true}) %>
           to switch to DELETE MODE.

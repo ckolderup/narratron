@@ -5,26 +5,33 @@ body {
   margin: 0 20px 20px;
 }
 
-a {
-  color: #00C;
-  text-decoration: none;
+ul, ol, li {
+  margin: 0;
+  padding: 0;
 }
 
-a:hover {
-  color: #339;
-  text-decoration: underline;
+a {
+  color: #800000;
+  text-decoration: none;
+
+  &:hover {
+    color: #fd7d83;
+    text-decoration: underline;
+  }
 }
 
 #banner {
   @include literary;
-  background: #f5f5f9;
+  background: #800000;
+  color: #fff;
   overflow: hidden;
   margin: 0 -20px 20px;
   padding: 20px;
+  font-size: 16px;
 }
 
 #title {
-  font-weight: bold;
+  font-weight: normal;
   font-size: 30px;
   line-height: 40px;
   margin: 0;
@@ -41,15 +48,26 @@ a:hover {
 
 .nav {
   list-style: none;
-  text-align: center;
   line-height: 40px;
-  margin: 0;
+  margin: 0 auto;
+  max-width: 500px;
+
+  #banner & {
+      color: #fd7d83;
+  }
 
   li {
-    display: inline;
     list-style: none;
-    font-size: 14px;
-    padding: 8px;
+    float: left;
+  }
+
+  a {
+    display: block;
+    padding-right: 20px;
+
+    #banner & {
+      color: inherit;
+    }
   }
 }
 
@@ -58,12 +76,7 @@ a:hover {
   padding-left: 5px;
 }
 
-#banner .nav {
-  float: left;
-}
-
 #tag {
-  font-size: 14px;
   line-height: 40px;
   margin: 0;
   float: right;
@@ -164,4 +177,14 @@ hr.faded {
       rgb(221,221,221) 90%,
       rgb(255,255,255) 100%
   );
+}
+
+@media screen and (max-width: 500px) {
+  #banner {
+    padding: 10px 20px;
+  }
+
+  .nav {
+    clear: both;
+  }
 }
