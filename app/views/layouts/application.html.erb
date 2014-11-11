@@ -19,11 +19,11 @@
 
   <ul class="nav">
     <li><%= link_to "Today", today_path %>
+    <li><%= link_to "Archives", archive_path %>
     <li><%= link_to "Submit Prompt", new_submission_path %>
     <% if current_user && (current_user.admin? || current_user.story_creator?) %>
       <li><%= link_to "Create Story", new_entry_path %>
     <% end %>
-    <li><%= link_to "Archives", archive_path %>
     <% if current_user && current_user.admin? %>
       <li class="admin"><%= link_to "Submitted", submissions_path %>
       <li class="admin"><%= link_to "Queued", queue_path %>
