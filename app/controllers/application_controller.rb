@@ -38,7 +38,8 @@ class ApplicationController < ActionController::Base
   helper_method :controller_slug
 
   def current_user
-    @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
+    user_id = cookies.permanent.signed[:user_id]
+    @current_user ||= User.find_by_id(user_id) if user_id.present?
   end
 
   def store_return_to
