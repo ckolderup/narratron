@@ -1,7 +1,7 @@
 module ApplicationHelper
   def apple_touch_icon_tag(size)
     link = ''
-    link << '<link rel=\"apple-touch-icon\" '
+    link << '<link rel="apple-touch-icon" '
     link << "sizes=\"#{xbyx(size)}\"" if size.present?
     link << "href=\"#{apple_touch_icon_path(size)}\" />"
     link.html_safe
