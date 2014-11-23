@@ -23,6 +23,8 @@ class Entry < ActiveRecord::Base
   belongs_to :parent, polymorphic: true
   has_many :entries, as: :parent, dependent: :destroy
 
+  accepts_nested_attributes_for :parent
+
   validates :parent, presence: true
   validates :text, presence: true
   validate :user_only_writes_once_per_story
@@ -60,6 +62,8 @@ class Entry < ActiveRecord::Base
   private
 
   def user_only_writes_once_per_story
+    return if story.blank? #new story, so we're good
+
     if story.contributors.include?(user)
       errors.add(:base, "Can't contribute twice to the same story")
     end

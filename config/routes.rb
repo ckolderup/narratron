@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get "sign_up" => "users#new", as: "sign_up"
 
   get '/e/:id' => 'entries#find', as: 'find_entry'
+  get '/stories/new' => 'submissions#new_story', as: 'new_story'
 
   root to: "home#index"
   get "archive" => "home#archive", as: "archive"
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
 
   resources :submissions do
     post '/assign' => 'submissions#assign', as: 'assign'
+    post '/create_and_publish' => 'submissions#create_and_publish', as: 'create_and_publish'
   end
 
   resources :stories do

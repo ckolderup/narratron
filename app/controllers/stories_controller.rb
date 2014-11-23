@@ -11,10 +11,6 @@ class StoriesController < ApplicationController
     redirect_to @leaf
   end
 
-  def new
-    redirect_to new_entry_path
-  end
-
   def toggle_status
     @story = Story.find(params[:story_id])
     if @story.closed?

@@ -1,5 +1,9 @@
 <% delete_mode ||= false %>
 
+<% if @story.title.present? %>
+  <h2 id="title"><%= @story.title %></h2>
+<% end %>
+
 <div class="story-text">
   <% @entries.each do |e| %>
     <span class="entry <%= 'yours' if e.user == current_user %>">

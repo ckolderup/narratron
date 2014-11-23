@@ -9,9 +9,18 @@
   <%= f.hidden_field :parent_type %>
   <%= f.hidden_field :parent_id %>
 
+  <% if @new_entry.parent.new_record? %>
+    <%= f.fields_for :parent do |sf| %>
+      <p>
+        <%= sf.label :title, "Title (optional)" %>
+        <%= sf.text_field :title, autofocus: @new_entry.parent.new_record? %>
+      </p>
+    <% end %>
+  <% end %>
+
   <p>
     <%= f.label :text, guidance, class: "guidance" %>
-    <%= f.text_area :text, autofocus: true %>
+    <%= f.text_area :text, autofocus: @new_entry.parent.persisted? %>
   </p>
 
   <p class="submit-entry">

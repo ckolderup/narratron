@@ -3,13 +3,12 @@ class EntriesController < ApplicationController
   before_filter :authorize, only: :destroy
 
   def new
-    @new_entry = Entry.new
+    @new_entry = Entry.new(story: Story.new)
   end
 
   def create
-    @entry = Entry.new(entry_params)
-    @entry.user = current_user
-    @entry.parent = Story.new if @entry.parent.nil?
+    @entry = Entry.create(entry_params.merge(user: current_user))
+    @entry.build_story
 
     if @entry.save
       attempt_closing_story(@entry.story)
@@ -83,7 +82,7 @@ class EntriesController < ApplicationController
   end
 
   def entry_params
-    params.require(:entry).permit(:text, :parent_type, :parent_id)
+    params.require(:entry).permit(:text, :parent_type, :parent_id, parent_attributes: [ :id, :title ])
   end
 
   def attempt_closing_story(story)

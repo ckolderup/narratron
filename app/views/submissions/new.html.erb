@@ -1,10 +1,15 @@
+<% @publish_now ||= false %>
 
-<%= form_for @submission, html: { class: "new-submission" } do |f| %>
+<%= form_for @submission, url: @publish_now ? submission_create_and_publish_path(@submission) : submission_create_path(@submission),
+        html: { class: "new-submission" } do |f| %>
+
   <% if @submission.errors.any? %>
     <% @submission.errors.full_messages.each do |msg| %>
       <div><%= "Error: #{msg} " %></div>
     <% end %>
   <% end %>
+
+  <%= f.hidden_field :id %>
 
   <p>
     <%= f.label :title, "Title (optional)", class: "guidance" %>
@@ -21,6 +26,6 @@
     <%= f.text_field :author, :value => (current_user.display_name if current_user) %>
 
   <p class="submit-submission">
-    <%= f.submit 'Submit', class: "submit-submission-button" %>
+    <%= f.submit @publish_now ? 'Create' : 'Submit', class: "submit-submission-button" %>
   </p>
 <% end %>

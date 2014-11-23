@@ -11,8 +11,30 @@ class SubmissionsController < ApplicationController
     @submission = Submission.new
   end
 
+  def new_story
+    @submission = Submission.new
+    @publish_now = true
+
+    render :new
+  end
+
+  def create_and_publish
+    @submission = Submission.new(submission_params)
+
+    story = Story.new(thanks: submission.author)
+    entry = Entry.new(text: submission.text, parent: story, override_sentence_limit: true)
+    unless story.save && entry.save
+      flash[:error] = entry.errors.to_a.join(", ")
+      redirect_to create_story_path and return
+    end
+
+    flash[:message] = "Story created!"
+    redirect_to entry_path(entry)
+  end
+
   def create
     @submission = Submission.new(submission_params)
+
     flash[:message] = "Submission received! Thanks, friend." if @submission.save
     redirect_to new_submission_path
   end
