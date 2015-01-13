@@ -18,6 +18,10 @@ class Story < ActiveRecord::Base
 
   enum status: %w(open wrapping closed)
 
+  def active?
+    !status.closed?
+  end
+
   def entries
     if entry.nil?
       []

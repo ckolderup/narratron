@@ -9,8 +9,8 @@ class HomeController < ApplicationController
 
   def archive
     public_days = Day.where("date <= ?", Day.pacific_time)
-                     .select { |d| d.story.status == 'closed' &&
-                                   d.story.entries.size > 1 }
+                     .select { |d| (d.story.active? ||
+                                   d.story.entries.size > 1) }
                      .map { |d| [d.story, d.date] }
 
     private_stories = []
