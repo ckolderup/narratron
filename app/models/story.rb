@@ -35,15 +35,15 @@ class Story < ActiveRecord::Base
   end
 
   def contributors
-    entries.collect { |e| e.user }
+    entries.collect { |e| e.user }.uniq
   end
 
   def contributed?(user)
     contributors.include?(user)
   end
 
-  def contribution_from(user)
-    entries.select { |e| e.user == user }.first
+  def contributions_from(user)
+    entries.select { |e| e.user == user }
   end
 
   def ready_to_wrap?

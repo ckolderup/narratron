@@ -14,7 +14,6 @@ module DaysHelper
   end
 
   def can_show_results(story)
-    story.closed? ||
-    (current_user && story.contribution_from(current_user).present?)
+    story.closed?
   end
 end

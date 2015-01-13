@@ -49,7 +49,16 @@ class EntriesController < ApplicationController
       render('read', locals: {delete_mode: delete_mode}) and return
     end
 
-    @entry = leaf_with_shortest_path(@entry.leaves, @entry.story) unless @entry.leaf?
+    leaves = @entry.leaves
+
+    #filter out paths where the current user is ineligible to add a sentence
+    #(most likely because they wrote the last sentence)
+    if current_user
+      eligible_leaves = leaves.select { |leaf| leaf.user != current_user }
+      leaves = eligible_leaves unless eligible_leaves.blank?
+    end
+
+    @entry = leaf_with_shortest_path(leaves, @entry.story) unless @entry.leaf?
 
     @new_entry = @entry.entries.build
     @new_entry.ending = true if @entry.story.wrapping?
@@ -79,7 +88,7 @@ class EntriesController < ApplicationController
   private
 
   def can_show_story
-    @entry.story.closed? || (current_user && @entry.story.contributed?(current_user))
+    @entry.story.closed?
   end
 
   def entry_params
