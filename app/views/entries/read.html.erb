@@ -15,23 +15,27 @@
 <hr class="faded">
 
 <div class="wat">
-  <% if @story.contributed?(current_user) %>
+  <% if @story.closed? && story.contributed?(current_user) %>
     <p>
       The preceding was a story you participated in on
-      <%= entry_date(@story.contribution_from(current_user)) %>.
-      <% if @entries.map(&:user).include?(current_user) %>
-        The sentence in bold is yours.
-      <% else %>
+      <%= entry_date(@story.contributions_from(current_user).first) %>.
+      <% case @entries.map(&:user).count(current_user) %>
+        <% when 0 %>
         This particular path didn't include your sentence;
-        <%= link_to "click here", @story.contribution_from(current_user) %>
-        to see a path that includes yours.
+          <%= link_to "click here", @story.contribution_from(current_user) %>
+          to see a path that includes yours.
+        <% when 1 %>
+          The sentence in bold is yours.
+        <% else %>
+          The sentences in bold are yours.
       <% end %>
     </p>
     <% unless @story.closed? %>
       <p>
         This story is still open for contributions. Share this page
         with your friends and they'll have a chance to contribute their
-        own sentence!
+        own sentence, or come back later to add a sentence once more have been
+        added!
       </p>
     <% end %>
     <% if @story.can_be_edited?(current_user) %>

@@ -27,7 +27,7 @@ class Entry < ActiveRecord::Base
 
   validates :parent, presence: true
   validates :text, presence: true
-  validate :user_only_writes_once_per_story
+  validate :user_cannot_write_consecutive_sentences
   validate :entry_text_is_only_one_sentence
 
   attr_accessor :override_sentence_limit
@@ -61,11 +61,9 @@ class Entry < ActiveRecord::Base
 
   private
 
-  def user_only_writes_once_per_story
-    return if story.blank? #new story, so we're good
-
-    if story.contributors.include?(user)
-      errors.add(:base, "Can't contribute twice to the same story")
+  def user_cannot_write_consecutive_sentences
+    if parent_type == 'Entry' && parent.user == self.user
+      errors.add(:base, "Can't contribute two sentences in a row")
     end
   end
 

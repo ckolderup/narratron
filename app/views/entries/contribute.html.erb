@@ -37,15 +37,23 @@
 
 
 <% if current_user %>
-  <div class="entry-submission">
-    <%
-      guidance = 'Continue the story with one new sentence.'
-      if @entry.story.wrapping?
-        guidance += 'This is the final sentence in this story path! Try to wrap it up as best you can.'
-      end
-    %>
-    <%= render 'form', guidance: guidance %>
-  </div>
+  <% if @entry.user == current_user %>
+    <div class="guidance">
+      You wrote the last sentence in this story! Unfortunately that means you
+      can't add more just yet. Send your friends to the story ASAP to get the
+      ball rolling again!
+    </div>
+  <% else %>
+    <div class="entry-submission">
+      <%
+        guidance = 'Continue the story with one new sentence.'
+        if @entry.story.wrapping?
+          guidance += 'This is the final sentence in this story path! Try to wrap it up as best you can.'
+        end
+      %>
+      <%= render 'form', guidance: guidance %>
+    </div>
+  <% end %>
 <% else %>
   <div class="guidance">
     Ready to write the next sentence?

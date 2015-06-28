@@ -24,11 +24,17 @@
       <%= branch_contains_contribution_flag(leaf) %>
     <% end %>
     </ul>
-  <% else %>
+  <% elsif story.can_user_contribute?(user) %>
     <p class="open-story-call-to-action">
-      You haven't participated in this active story yet.
+      You are currently able to participate in this active story.
       What are you waiting for?
       <%= link_to "Add a sentence now!", story.leaves.sample %>
+    </p>
+  <% else %>
+    <p class="open-story-call-to-action">
+      Hold up! There are no branches of this story you can contribute to
+      right now. Maybe get a friend to add on to
+      <%= link_to "this one", story.leave.sample %> so you can jump back in?
     </p>
   <% end %>
 
