@@ -1,6 +1,6 @@
 <% @publish_now ||= false %>
 
-<%= form_for @submission, url: @publish_now ? submission_create_and_publish_path(@submission) : submission_create_path(@submission),
+<%= form_for @submission, url: @publish_now ? create_and_publish_path : submission_create_path(@submission),
         html: { class: "new-submission" } do |f| %>
 
   <% if @submission.errors.any? %>

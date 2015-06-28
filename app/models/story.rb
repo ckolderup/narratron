@@ -19,7 +19,7 @@ class Story < ActiveRecord::Base
   enum status: %w(open wrapping closed)
 
   def active?
-    !status.closed?
+    !closed?
   end
 
   def entries
@@ -44,6 +44,10 @@ class Story < ActiveRecord::Base
 
   def contributions_from(user)
     entries.select { |e| e.user == user }
+  end
+
+  def can_user_contribute?(user)
+    leaves.select { |e| e.user != user }.size > 0
   end
 
   def ready_to_wrap?

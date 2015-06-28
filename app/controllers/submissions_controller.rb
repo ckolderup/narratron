@@ -21,8 +21,9 @@ class SubmissionsController < ApplicationController
   def create_and_publish
     @submission = Submission.new(submission_params)
 
-    story = Story.new(thanks: submission.author)
-    entry = Entry.new(text: submission.text, parent: story, override_sentence_limit: true)
+    story = Story.new(thanks: @submission.author, title: @submission.title)
+    entry = Entry.new(text: @submission.text, parent: story,
+                      override_sentence_limit: true, user: current_user)
     unless story.save && entry.save
       flash[:error] = entry.errors.to_a.join(", ")
       redirect_to create_story_path and return
@@ -73,6 +74,6 @@ class SubmissionsController < ApplicationController
   private
 
   def submission_params
-    params.require(:submission).permit(:text, :title, :author)
+    params.require(:submission).permit(:id, :text, :title, :author)
   end
 end

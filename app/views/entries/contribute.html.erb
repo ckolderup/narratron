@@ -1,3 +1,11 @@
+<h2 class="title">
+  <% if @entry.story.title.present? %>
+    <%= @entry.story.title %>
+  <% else %>
+    Untitled
+  <% end %>
+</h2>
+
 <div class="guidance">
   <% if @entries.empty? %>
     <% if current_user %>

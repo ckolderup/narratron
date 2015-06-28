@@ -1,9 +1,13 @@
 <h2>Available Stories</h2>
 
 <% @stories.each do |story| %>
-  <h3>
+  <div class="story-title">
     <%= story_title(story) %>
-  </h3>
+  </div>
+  <div class="story-details">
+    <%= story_details(story) %>
+  </div>
+
   <% if story.can_be_edited?(current_user) %>
     <span class="admin">
       <% if story.closed? && story.stale_public_story? %>
@@ -24,7 +28,7 @@
       <%= branch_contains_contribution_flag(leaf) %>
     <% end %>
     </ul>
-  <% elsif story.can_user_contribute?(user) %>
+  <% elsif story.can_user_contribute?(current_user) %>
     <p class="open-story-call-to-action">
       You are currently able to participate in this active story.
       What are you waiting for?
@@ -34,7 +38,7 @@
     <p class="open-story-call-to-action">
       Hold up! There are no branches of this story you can contribute to
       right now. Maybe get a friend to add on to
-      <%= link_to "this one", story.leave.sample %> so you can jump back in?
+      <%= link_to "this one", story.leaves.sample %> so you can jump back in?
     </p>
   <% end %>
 

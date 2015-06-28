@@ -24,8 +24,10 @@ Rails.application.routes.draw do
 
   resources :submissions do
     post '/assign' => 'submissions#assign', as: 'assign'
-    post '/create_and_publish' => 'submissions#create_and_publish', as: 'create_and_publish'
   end
+
+  post '/create_and_publish' => 'submissions#create_and_publish', as: 'create_and_publish'
+
 
   resources :stories do
     post '/toggle_status' => 'stories#toggle_status', as: 'toggle_status'

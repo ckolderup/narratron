@@ -4,3 +4,17 @@
   @include literary;
   margin: 5px auto 20px;
 }
+
+.story-title {
+  font-family: 'Crimson', serif;
+  font-size: 24px;
+  line-height: 1em;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 0px;
+}
+
+.story-details {
+  margin-bottom: 15px;
+  font-style: italic;
+}
