@@ -15,7 +15,7 @@
 <hr class="faded">
 
 <div class="wat">
-  <% if @story.closed? && story.contributed?(current_user) %>
+  <% if @story.closed? && @story.contributed?(current_user) %>
     <p>
       The preceding was a story you participated in on
       <%= entry_date(@story.contributions_from(current_user).first) %>.
