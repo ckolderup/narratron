@@ -8,7 +8,7 @@ class EntriesController < ApplicationController
 
   def create
     @entry = Entry.create(entry_params.merge(user: current_user))
-    @entry.build_story
+    @entry.build_story if params[:parent_type] == 'Story'
 
     if @entry.save
       attempt_closing_story(@entry.story)
